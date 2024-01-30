@@ -1,4 +1,33 @@
 module.exports = {
   root: true,
   extends: '@react-native',
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+    },
+  },
+  plugins: ['@typescript-eslint', 'react', 'react-native'],
+  rules: {
+    indent: ['error', 2],
+    'linebreak-style': ['error', 'unix'],
+    quotes: ['error', 'single'],
+    semi: ['error', 'always'],
+    'comma-dangle': ['error', 'always-multiline'],
+    'comma-spacing': ['error', { after: true }],
+    'object-curly-spacing': ['error', 'always'],
+    'eol-last': ['error', 'always'],
+    'no-multi-spaces': 'error',
+    'max-lines': ['error', 150],
+    'no-multiple-empty-lines': ['error', { max: 1 }],
+    eqeqeq: 'error',
+    'react-native/no-unused-styles': 2,
+    'react-native/split-platform-components': 2,
+    'react-native/no-inline-styles': 2,
+    'react-native/no-color-literals': 2,
+    'react-native/no-raw-text': 2,
+    'react-native/no-single-element-style-arrays': 2,
+  },
 };
