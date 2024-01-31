@@ -13,10 +13,10 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { NativeBaseProvider } from 'native-base';
 
-import { queryClient } from './src/libs/utils/config';
-import { Screens } from './src/libs/utils/constants';
-import { AuthStack } from './src/modules/auth/navigation/AuthStack';
-import { HomeScreen } from './src/modules/home/components/screens/HomeScreen';
+import { queryClient } from 'libs/utils/config';
+import { Screens } from 'libs/utils/constants';
+import { LoginScreen } from 'modules/auth/components/screens/LoginScreen';
+import { HomeScreen } from 'modules/home/components/screens/HomeScreen';
 
 const RootNavigationStack = createStackNavigator();
 
@@ -24,7 +24,7 @@ function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+    backgroundColor: isDarkMode ? Colors.darker : Colors.white,
     flex: 1,
   };
 
@@ -39,16 +39,19 @@ function App(): React.JSX.Element {
         <NativeBaseProvider>
           <NavigationContainer>
             <RootNavigationStack.Navigator
-              initialRouteName={Screens.HOME_SCREEN}
+              initialRouteName={Screens.AUTH_STACK.LOGIN_SCREEN}
             >
               <RootNavigationStack.Screen
-                name={Screens.HOME_SCREEN}
-                component={HomeScreen}
+                name={Screens.AUTH_STACK.LOGIN_SCREEN}
+                component={LoginScreen}
+                options={{
+                  title: 'Sign in to get stars!',
+                }}
               />
 
               <RootNavigationStack.Screen
-                name={Screens.AUTH_STACK.INDEX}
-                component={AuthStack}
+                name={Screens.HOME_SCREEN}
+                component={HomeScreen}
               />
             </RootNavigationStack.Navigator>
           </NavigationContainer>
