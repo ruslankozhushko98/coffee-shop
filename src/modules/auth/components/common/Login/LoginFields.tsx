@@ -6,7 +6,7 @@ import { useFormikContext } from 'formik';
 import { useKeyboardOpened } from 'hooks/useKeyboardOpened';
 import CoffeeIcon from 'libs/assets/icons/coffee.svg';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from 'libs/utils/constants';
-import { LoginInitialValues } from 'modules/auth/utils/types';
+import { SignInDto } from 'modules/auth/utils/types';
 
 const styles = StyleSheet.create({
   coffeeIcon: {
@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
 
 export const LoginFields: FC = () => {
   const { handleSubmit, handleChange, handleBlur, isSubmitting, values } =
-    useFormikContext<LoginInitialValues>();
+    useFormikContext<SignInDto>();
   const isVisible = useKeyboardOpened();
 
   return (
@@ -67,6 +67,7 @@ export const LoginFields: FC = () => {
             shadow={2}
             onPress={handleSubmit}
             disabled={isSubmitting}
+            isLoading={isSubmitting}
           >
             <Text fontSize="md" fontWeight="bold" color="blueGray.200">
               Sign in
