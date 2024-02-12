@@ -7,8 +7,8 @@ export const SCREEN_HEIGHT = Dimensions.get('screen').height;
 
 export enum Screens {
   AUTH_STACK = 'AUTH_STACK',
-  LOGIN_SCREEN = 'LOGIN_SCREEN',
-  REGISTER_SCREEN = 'REGISTER_SCREEN',
+  SIGN_IN_SCREEN = 'SIGN_IN_SCREEN',
+  SIGN_UP_SCREEN = 'SIGN_UP_SCREEN',
 
   HOME_SCREEN = 'HOME_SCREEN',
 }
