@@ -11,7 +11,7 @@ export const Header: FC<StackHeaderProps> = () => {
 
   const handleLogout = async (): Promise<void> => {
     await AsyncStorage.removeItem('access_token');
-    navigate(Screens.LOGIN_SCREEN);
+    navigate(Screens.SIGN_IN_SCREEN);
   };
 
   return (

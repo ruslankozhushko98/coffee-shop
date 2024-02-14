@@ -14,9 +14,7 @@ export const SignInFields: FC = () => {
   const isKeyboardOpened = useKeyboardOpened();
   const { handleSubmit, isSubmitting } = useFormikContext<SignInDto>();
 
-  const goToSignUpScreen = (): void => {
-    navigate(Screens.SIGN_UP_SCREEN);
-  };
+  const goToSignUpScreen = (): void => navigate(Screens.SIGN_UP_SCREEN);
 
   return (
     <AuthLayout>
@@ -44,7 +42,7 @@ export const SignInFields: FC = () => {
         />
 
         <Button
-          mt={8}
+          mt={4}
           shadow={2}
           onPress={handleSubmit}
           disabled={isSubmitting}

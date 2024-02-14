@@ -1,6 +1,9 @@
 import React, { FC } from 'react';
+import { Platform } from 'react-native';
+import { KeyboardAvoidingView } from 'native-base';
 import { Formik, FormikHelpers } from 'formik';
 
+import { useKeyboardOpened } from 'hooks/useKeyboardOpened';
 import { useSignIn } from 'hooks/auth/useSignIn';
 import { loginValidationSchema } from 'modules/auth/utils/validation';
 import { SignInDto } from 'modules/auth/utils/types';
@@ -13,6 +16,7 @@ const initialValues: SignInDto = {
 
 export const SignInScreen: FC = () => {
   const { mutate } = useSignIn();
+  const isKeyboardOpened = useKeyboardOpened();
 
   const handleSubmit = (
     values: SignInDto,
@@ -23,12 +27,18 @@ export const SignInScreen: FC = () => {
   };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={loginValidationSchema}
-      onSubmit={handleSubmit}
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      justifyContent={isKeyboardOpened ? 'unset' : 'center'}
+      flex={1}
     >
-      <SignInFields />
-    </Formik>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={loginValidationSchema}
+        onSubmit={handleSubmit}
+      >
+        <SignInFields />
+      </Formik>
+    </KeyboardAvoidingView>
   );
 };

@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 import { Formik, FormikHelpers } from 'formik';
 
+import { useSignUp } from 'hooks/auth/useSignUp';
 import { registerValidationSchema } from 'modules/auth/utils/validation';
 import { SignUpDto } from 'modules/auth/utils/types';
 import { GENDER } from 'modules/auth/utils/constants';
 import { SignUpFields } from 'modules/auth/components/common/SignUp/SignUpFields';
-import { useSignUp } from 'hooks/auth/useSignUp';
 
 const initialValues: SignUpDto = {
   email: '',

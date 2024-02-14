@@ -1,30 +1,33 @@
-import React, { FC, useMemo } from 'react';
-import { FormControl, IInputProps, Input } from 'native-base';
-import { useField } from 'formik';
+import React, { FC, PropsWithChildren, useMemo } from 'react';
 import {
+  FormControl,
   IFormControlErrorMessageProps,
   IFormControlLabelProps,
-  InterfaceFormControlProps,
-} from 'native-base/lib/typescript/components/composites/FormControl/types';
+  Select,
+} from 'native-base';
+import { InterfaceFormControlProps } from 'native-base/lib/typescript/components/composites/FormControl/types';
+import { InterfaceSelectProps } from 'native-base/lib/typescript/components/primitives/Select/types';
+import { useField } from 'formik';
 
-type TextFieldProps = {
+type SelectFieldProps = {
   name: string;
   errorVisible?: boolean;
   label?: string;
   labelProps?: IFormControlLabelProps;
-  inputProps?: IInputProps;
+  selectProps?: InterfaceSelectProps;
   formControlProps?: InterfaceFormControlProps;
   errorMessageProps?: IFormControlErrorMessageProps;
-};
+} & PropsWithChildren;
 
-export const TextField: FC<TextFieldProps> = ({
+export const SelectField: FC<SelectFieldProps> = ({
   name,
-  errorVisible = true,
+  errorVisible,
   label,
   labelProps,
-  inputProps,
+  selectProps,
   formControlProps,
   errorMessageProps,
+  children,
 }) => {
   const [field, meta] = useField(name);
 
@@ -38,12 +41,13 @@ export const TextField: FC<TextFieldProps> = ({
         <FormControl.Label {...labelProps}>{label}</FormControl.Label>
       )}
 
-      <Input
-        {...inputProps}
-        value={field.value}
-        onChangeText={field.onChange(name)}
-        onBlur={field.onBlur(name)}
-      />
+      <Select
+        {...selectProps}
+        defaultValue={field.value}
+        onValueChange={field.onChange(name)}
+      >
+        {children}
+      </Select>
 
       {isError && errorVisible && (
         <FormControl.ErrorMessage {...errorMessageProps}>

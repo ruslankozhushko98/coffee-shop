@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-import { PHONE_REGEX } from 'libs/utils/constants';
+import { GENDER } from './constants';
 
 export const loginValidationSchema = Yup.object({
   email: Yup.string().email('Email is invalid').required('Email is required!'),
@@ -16,7 +16,8 @@ export const registerValidationSchema = Yup.object({
     .required('Password is required!'),
   firstName: Yup.string().required('First name is required!'),
   lastName: Yup.string().required('Last name is required!'),
-  phoneNumber: Yup.string()
-    .matches(PHONE_REGEX)
-    .required('Phone number is required!'),
+  gender: Yup.string()
+    .label('Gender')
+    .oneOf([GENDER.FEMALE, GENDER.MALE, GENDER.OTHER])
+    .default(GENDER.OTHER),
 });
