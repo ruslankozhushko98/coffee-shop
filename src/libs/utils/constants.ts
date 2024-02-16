@@ -2,6 +2,8 @@ import { Dimensions } from 'react-native';
 
 export const PHONE_REGEX = /^\(\d{3}\) \d{3}-\d{4}$/;
 
+export const DATE_FORMAT = 'mm/dd/yyyy';
+
 export const SCREEN_WIDTH = Dimensions.get('screen').width;
 export const SCREEN_HEIGHT = Dimensions.get('screen').height;
 

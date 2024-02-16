@@ -22,22 +22,18 @@ export const SignInFields: FC = () => {
         <TextField
           name="email"
           label="Email"
-          inputProps={{
-            variant: 'underlined',
-            placeholder: 'Enter your email',
-          }}
+          variant="underlined"
+          placeholder="Enter your email"
           errorVisible={!isKeyboardOpened}
         />
 
         <TextField
           name="password"
           label="Password"
-          inputProps={{
-            variant: 'underlined',
-            placeholder: 'Enter your password',
-            type: 'password',
-          }}
           labelProps={{ pt: 3 }}
+          variant="underlined"
+          placeholder="Enter your password"
+          type="password"
           errorVisible={!isKeyboardOpened}
         />
 

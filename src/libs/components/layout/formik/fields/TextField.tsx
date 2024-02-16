@@ -1,30 +1,28 @@
 import React, { FC, useMemo } from 'react';
-import { FormControl, IInputProps, Input } from 'native-base';
+import { IInputProps, Input } from 'native-base';
 import { useField } from 'formik';
+import { IFormControlLabelProps } from 'native-base/lib/typescript/components/composites/FormControl/types';
+
 import {
-  IFormControlErrorMessageProps,
-  IFormControlLabelProps,
-  InterfaceFormControlProps,
-} from 'native-base/lib/typescript/components/composites/FormControl/types';
+  FormControlWrapper,
+  FormControlWrapperProps,
+} from 'libs/components/layout/FormControlWrapper';
 
 type TextFieldProps = {
   name: string;
   errorVisible?: boolean;
   label?: string;
   labelProps?: IFormControlLabelProps;
-  inputProps?: IInputProps;
-  formControlProps?: InterfaceFormControlProps;
-  errorMessageProps?: IFormControlErrorMessageProps;
-};
+  formControlProps?: FormControlWrapperProps;
+} & IInputProps;
 
 export const TextField: FC<TextFieldProps> = ({
   name,
   errorVisible = true,
   label,
   labelProps,
-  inputProps,
   formControlProps,
-  errorMessageProps,
+  ...props
 }) => {
   const [field, meta] = useField(name);
 
@@ -33,23 +31,19 @@ export const TextField: FC<TextFieldProps> = ({
   }, [meta.error, meta.touched]);
 
   return (
-    <FormControl {...formControlProps} isInvalid={isError}>
-      {Boolean(label) && (
-        <FormControl.Label {...labelProps}>{label}</FormControl.Label>
-      )}
-
+    <FormControlWrapper
+      {...formControlProps}
+      label={label}
+      labelProps={labelProps}
+      errorVisible={isError && errorVisible}
+      errorMessage={meta.error}
+    >
       <Input
-        {...inputProps}
+        {...props}
         value={field.value}
         onChangeText={field.onChange(name)}
         onBlur={field.onBlur(name)}
       />
-
-      {isError && errorVisible && (
-        <FormControl.ErrorMessage {...errorMessageProps}>
-          {meta.error}
-        </FormControl.ErrorMessage>
-      )}
-    </FormControl>
+    </FormControlWrapper>
   );
 };

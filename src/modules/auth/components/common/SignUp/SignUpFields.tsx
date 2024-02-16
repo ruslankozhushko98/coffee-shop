@@ -1,22 +1,41 @@
 import React, { FC } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import DateTimePicker, {
+  DateTimePickerEvent,
+} from '@react-native-community/datetimepicker';
 import { Button, Select, Text } from 'native-base';
 import { useFormikContext } from 'formik';
+import dayjs from 'dayjs';
 
 import { useKeyboardOpened } from 'hooks/useKeyboardOpened';
 import { Screens } from 'libs/utils/constants';
 import { SelectField, TextField } from 'libs/components/layout/formik/fields';
-import { SignInDto } from 'modules/auth/utils/types';
-import { AuthLayout } from 'modules/auth/components/layout/AuthLayout';
+import { FormControlWrapper } from 'libs/components/layout/FormControlWrapper';
+import { SignUpDto } from 'modules/auth/utils/types';
 import { GENDER } from 'modules/auth/utils/constants';
+import { AuthLayout } from 'modules/auth/components/layout/AuthLayout';
+
+import { styles } from './styles';
 
 export const SignUpFields: FC = () => {
   const { navigate } = useNavigation();
   const isKeyboardOpened = useKeyboardOpened();
-  const { handleSubmit, isSubmitting } = useFormikContext<SignInDto>();
+  const {
+    handleSubmit,
+    isSubmitting,
+    errors,
+    values,
+    setFieldValue,
+    setFieldTouched,
+  } = useFormikContext<SignUpDto>();
 
   const goToSignInScreen = (): void => navigate(Screens.SIGN_IN_SCREEN);
+
+  const handleChangeDOB = (e: DateTimePickerEvent, date?: Date): void => {
+    setFieldTouched('dob', true);
+    setFieldValue('dob', date);
+  };
 
   return (
     <KeyboardAwareScrollView>
@@ -24,63 +43,70 @@ export const SignUpFields: FC = () => {
         <TextField
           name="email"
           label="Email"
-          inputProps={{
-            variant: 'underlined',
-            placeholder: 'Enter your email',
-          }}
+          variant="underlined"
+          placeholder="Enter your email"
           errorVisible={!isKeyboardOpened}
         />
 
         <TextField
           name="password"
           label="Password"
-          inputProps={{
-            variant: 'underlined',
-            placeholder: 'Enter your password',
-            type: 'password',
-          }}
           labelProps={{ pt: 3 }}
+          variant="underlined"
+          placeholder="Enter your password"
+          type="password"
           errorVisible={!isKeyboardOpened}
         />
 
         <TextField
           name="firstName"
           label="First name"
-          inputProps={{
-            variant: 'underlined',
-            placeholder: 'Enter your first name',
-            type: 'text',
-          }}
           labelProps={{ pt: 3 }}
+          variant="underlined"
+          placeholder="Enter your first name"
+          type="text"
           errorVisible={!isKeyboardOpened}
         />
 
         <TextField
           name="lastName"
           label="Last name"
-          inputProps={{
-            variant: 'underlined',
-            placeholder: 'Enter your last name',
-            type: 'text',
-          }}
           labelProps={{ pt: 3 }}
+          variant="underlined"
+          placeholder="Enter your last name"
+          type="text"
           errorVisible={!isKeyboardOpened}
         />
 
         <SelectField
           name="gender"
           label="Gender"
+          labelProps={{ pt: 3 }}
           selectProps={{
             variant: 'underlined',
             placeholder: 'Choose your gender',
           }}
-          labelProps={{ pt: 3 }}
           errorVisible={!isKeyboardOpened}
         >
           <Select.Item label={GENDER.MALE} value={GENDER.MALE} />
           <Select.Item label={GENDER.FEMALE} value={GENDER.FEMALE} />
           <Select.Item label={GENDER.OTHER} value={GENDER.OTHER} />
         </SelectField>
+
+        <FormControlWrapper
+          label="Date of birth"
+          labelProps={{ pt: 3 }}
+          errorMessage={errors.dob}
+          errorVisible={!isKeyboardOpened}
+        >
+          <DateTimePicker
+            mode="date"
+            value={dayjs(values.dob).toDate()}
+            onChange={handleChangeDOB}
+            maximumDate={new Date()}
+            style={styles.dateTimePicker}
+          />
+        </FormControlWrapper>
 
         <Button
           mt={4}

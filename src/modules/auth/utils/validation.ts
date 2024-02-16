@@ -16,6 +16,7 @@ export const registerValidationSchema = Yup.object({
     .required('Password is required!'),
   firstName: Yup.string().required('First name is required!'),
   lastName: Yup.string().required('Last name is required!'),
+  dob: Yup.string().required('Date of birth is required!'),
   gender: Yup.string()
     .label('Gender')
     .oneOf([GENDER.FEMALE, GENDER.MALE, GENDER.OTHER])

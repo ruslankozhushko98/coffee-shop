@@ -1,7 +1,9 @@
 import React, { FC } from 'react';
 import { Formik, FormikHelpers } from 'formik';
+import dayjs from 'dayjs';
 
 import { useSignUp } from 'hooks/auth/useSignUp';
+import { DATE_FORMAT } from 'libs/utils/constants';
 import { registerValidationSchema } from 'modules/auth/utils/validation';
 import { SignUpDto } from 'modules/auth/utils/types';
 import { GENDER } from 'modules/auth/utils/constants';
@@ -12,7 +14,7 @@ const initialValues: SignUpDto = {
   password: '',
   firstName: '',
   lastName: '',
-  dob: '',
+  dob: dayjs().toString(),
   gender: GENDER.OTHER,
 };
 
@@ -23,7 +25,11 @@ export const SignUpScreen: FC = () => {
     values: SignUpDto,
     { setSubmitting }: FormikHelpers<SignUpDto>,
   ): void => {
-    mutate(values);
+    mutate({
+      ...values,
+      dob: dayjs(values.dob).format(DATE_FORMAT),
+    });
+
     setSubmitting(false);
   };
 
