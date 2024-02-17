@@ -1,5 +1,3 @@
-import { AxiosResponse } from 'axios';
-
 import { httpClient } from 'libs/utils/config';
 import { SignInDto, SignUpDto } from 'modules/auth/utils/types';
 import { User } from 'modules/auth/models';
@@ -25,12 +23,14 @@ class AuthService {
     return AuthService._instance;
   }
 
-  public signIn(data: SignInDto): Promise<AxiosResponse<AccessTokenObj>> {
-    return httpClient.post('/auth/sign-in', data);
+  public async signIn(dto: SignInDto): Promise<AccessTokenObj> {
+    const { data } = await httpClient.post('/auth/sign-in', dto);
+    return data;
   }
 
-  public signUp(data: SignUpDto): Promise<AxiosResponse<AccessTokenObj>> {
-    return httpClient.post('/auth/sign-up', data);
+  public async signUp(dto: SignUpDto): Promise<AccessTokenObj> {
+    const { data } = await httpClient.post('/auth/sign-up', dto);
+    return data;
   }
 
   public async fetchMe(): Promise<User> {

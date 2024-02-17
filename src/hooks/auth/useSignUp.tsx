@@ -17,7 +17,7 @@ export const useSignUp = () => {
   return useMutation({
     mutationKey: [Mutations.SIGN_UP],
     mutationFn: authService.signUp,
-    async onSuccess({ data }) {
+    async onSuccess(data) {
       await AsyncStorage.setItem(
         AsyncStorageKeys.accessToken,
         data.accessToken,
