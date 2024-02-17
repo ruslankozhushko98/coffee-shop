@@ -33,8 +33,9 @@ class AuthService {
     return httpClient.post('/auth/sign-up', data);
   }
 
-  public fetchMe(): Promise<AxiosResponse<User>> {
-    return httpClient.get('/auth/me');
+  public async fetchMe(): Promise<User> {
+    const { data } = await httpClient.get('/auth/me');
+    return data;
   }
 }
 

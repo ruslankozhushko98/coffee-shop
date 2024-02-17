@@ -4,14 +4,17 @@ import { StackHeaderProps } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
 import { Box, Text, Button } from 'native-base';
 
+import { useGlobalContext } from 'contexts/globalContext';
 import { Screens } from 'libs/utils/constants';
 
 export const Header: FC<StackHeaderProps> = () => {
   const { navigate } = useNavigation();
+  const { setUser } = useGlobalContext();
 
   const handleLogout = async (): Promise<void> => {
     await AsyncStorage.removeItem('access_token');
     navigate(Screens.SIGN_IN_SCREEN);
+    setUser(null);
   };
 
   return (
