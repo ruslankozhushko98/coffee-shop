@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
+import { BiometryType } from 'react-native-biometrics';
 import { Text, useToast } from 'native-base';
 
 import { useGlobalContext } from 'contexts/globalContext';
@@ -14,7 +15,7 @@ export const useBiometrics = () => {
   const toast = useToast();
   const { navigate } = useNavigation();
   const [isBiometricSetup, setIsBiometricSetup] = useState<boolean>(false);
-  const [biometricType, setBiometricType] = useState<string | null>(null);
+  const [biometricType, setBiometricType] = useState<BiometryType | null>(null);
 
   useEffect(() => {
     (async () => {
@@ -27,7 +28,7 @@ export const useBiometrics = () => {
       );
 
       if (biometryType) {
-        setBiometricType(biometryType);
+        setBiometricType(biometryType as BiometryType);
       }
     })();
   }, []);
@@ -63,6 +64,7 @@ export const useBiometrics = () => {
                 );
 
                 setIsBiometricSetup(true);
+                setBiometricType(biometryType as BiometryType);
               },
             },
             {

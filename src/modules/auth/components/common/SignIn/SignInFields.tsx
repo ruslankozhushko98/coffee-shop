@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useMemo } from 'react';
 import { BiometryTypes } from 'react-native-biometrics';
 import { Box, Button, Text } from 'native-base';
 import { useFormikContext } from 'formik';
@@ -6,7 +6,7 @@ import { useFormikContext } from 'formik';
 import { useKeyboardOpened } from 'hooks/useKeyboardOpened';
 import { useBiometrics } from 'hooks/useBiometrics';
 import FaceID from 'libs/assets/icons/face-id.svg';
-import TouchId from 'libs/assets/icons/touch-id.svg';
+import TouchID from 'libs/assets/icons/touch-id.svg';
 import { TextField } from 'libs/components/layout/formik/fields';
 import { SignInDto } from 'modules/auth/utils/types';
 import { AuthLayout } from 'modules/auth/components/layout/AuthLayout';
@@ -18,7 +18,9 @@ export const SignInFields: FC = () => {
   const { handleSubmit, isSubmitting } = useFormikContext<SignInDto>();
   const { verifyBiometrics, isBiometricSetup, biometricType } = useBiometrics();
 
-  const isBiometricBtnVisible: boolean = !isKeyboardOpened && isBiometricSetup;
+  const isBiometricBtnVisible: boolean = useMemo(() => {
+    return !isKeyboardOpened && isBiometricSetup;
+  }, [isBiometricSetup, isKeyboardOpened]);
 
   useEffect(() => {
     if (isBiometricSetup) {
@@ -80,7 +82,7 @@ export const SignInFields: FC = () => {
               {biometricType === BiometryTypes.FaceID ? (
                 <FaceID style={styles.icon} width={50} height={50} />
               ) : (
-                <TouchId style={styles.icon} width={50} height={50} />
+                <TouchID style={styles.icon} width={50} height={50} />
               )}
 
               <Text mt={1} color="blue.500" fontWeight="medium" fontSize="md">

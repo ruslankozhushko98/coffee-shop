@@ -22,7 +22,7 @@ export const HomeScreen: FC = () => {
   }, [data]);
 
   useEffect(() => {
-    if (!isBiometricSetup) {
+    if (!isBiometricSetup && user) {
       setupBiometrics();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
