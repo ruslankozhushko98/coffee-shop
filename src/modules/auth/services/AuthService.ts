@@ -1,5 +1,12 @@
+import { AxiosResponse } from 'axios';
+
 import { httpClient } from 'libs/utils/config';
-import { SignInDto, SignUpDto } from 'modules/auth/utils/types';
+import {
+  AuthBiometricDto,
+  PublicKeyDto,
+  SignInDto,
+  SignUpDto,
+} from 'modules/auth/utils/types';
 import { User } from 'modules/auth/models';
 
 type AccessTokenObj = {
@@ -35,6 +42,17 @@ class AuthService {
 
   public async fetchMe(): Promise<User> {
     const { data } = await httpClient.get('/auth/me');
+    return data;
+  }
+
+  public async createPublicKey(
+    dto: PublicKeyDto,
+  ): Promise<AxiosResponse<{ message: string }>> {
+    return httpClient.post('/auth/create-public-key', dto);
+  }
+
+  public async authBiometric(dto: AuthBiometricDto): Promise<AccessTokenObj> {
+    const { data } = await httpClient.post('/auth/auth-biometric', dto);
     return data;
   }
 }

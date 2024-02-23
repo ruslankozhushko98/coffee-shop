@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import { useNavigation } from '@react-navigation/native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import DateTimePicker, {
   DateTimePickerEvent,
@@ -9,7 +8,6 @@ import { useFormikContext } from 'formik';
 import dayjs from 'dayjs';
 
 import { useKeyboardOpened } from 'hooks/useKeyboardOpened';
-import { Screens } from 'libs/utils/constants';
 import { SelectField, TextField } from 'libs/components/layout/formik/fields';
 import { FormControlWrapper } from 'libs/components/layout/FormControlWrapper';
 import { SignUpDto } from 'modules/auth/utils/types';
@@ -19,7 +17,6 @@ import { AuthLayout } from 'modules/auth/components/layout/AuthLayout';
 import { styles } from './styles';
 
 export const SignUpFields: FC = () => {
-  const { navigate } = useNavigation();
   const isKeyboardOpened = useKeyboardOpened();
   const {
     handleSubmit,
@@ -29,8 +26,6 @@ export const SignUpFields: FC = () => {
     setFieldValue,
     setFieldTouched,
   } = useFormikContext<SignUpDto>();
-
-  const goToSignInScreen = (): void => navigate(Screens.SIGN_IN_SCREEN);
 
   const handleChangeDOB = (e: DateTimePickerEvent, date?: Date): void => {
     setFieldTouched('dob', true);
@@ -82,10 +77,8 @@ export const SignUpFields: FC = () => {
           name="gender"
           label="Gender"
           labelProps={{ pt: 3 }}
-          selectProps={{
-            variant: 'underlined',
-            placeholder: 'Choose your gender',
-          }}
+          variant="underlined"
+          placeholder="Choose your gender"
           errorVisible={!isKeyboardOpened}
         >
           <Select.Item label={GENDER.MALE} value={GENDER.MALE} />
@@ -119,20 +112,6 @@ export const SignUpFields: FC = () => {
             Sign up
           </Text>
         </Button>
-
-        {!isKeyboardOpened && (
-          <>
-            <Text textAlign="center" fontSize="md" mt={4}>
-              Or
-            </Text>
-
-            <Button onPress={goToSignInScreen} variant="link">
-              <Text fontSize="md" fontWeight="bold">
-                Sign in
-              </Text>
-            </Button>
-          </>
-        )}
       </AuthLayout>
     </KeyboardAwareScrollView>
   );

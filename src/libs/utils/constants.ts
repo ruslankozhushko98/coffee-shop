@@ -26,4 +26,6 @@ export enum Mutations {
 
 export enum AsyncStorageKeys {
   accessToken = 'access_token',
+  userId = 'user_id',
+  biometryType = 'biometry_type',
 }

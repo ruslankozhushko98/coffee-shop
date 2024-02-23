@@ -10,18 +10,18 @@ import { SignInDto } from 'modules/auth/utils/types';
 import { SignInFields } from 'modules/auth/components/common/SignIn/SignInFields';
 
 const initialValues: SignInDto = {
-  email: '',
-  password: '',
+  email: 'asd@asd.asd',
+  password: 'secret',
 };
 
 export const SignInScreen: FC = () => {
   const { mutate } = useSignIn();
   const isKeyboardOpened = useKeyboardOpened();
 
-  const handleSubmit = (
+  const handleSubmit = async (
     values: SignInDto,
     { setSubmitting }: FormikHelpers<SignInDto>,
-  ): void => {
+  ): Promise<void> => {
     mutate(values);
     setSubmitting(false);
   };

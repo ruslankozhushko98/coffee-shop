@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unstable-nested-components */
 /**
  * Sample React Native App
  * https://github.com/facebook/react-native
@@ -19,6 +20,8 @@ import { Screens } from 'libs/utils/constants';
 import { Header } from 'libs/components/layout/Header';
 import { SignInScreen } from 'modules/auth/components/screens/SignInScreen';
 import { SignUpScreen } from 'modules/auth/components/screens/SignUpScreen';
+import { SignUpLink } from 'modules/auth/components/layout/SignUpLink';
+import { BackLink } from 'modules/auth/components/layout/BackLink';
 import { HomeScreen } from 'modules/home/components/screens/HomeScreen';
 
 const RootNavigationStack = createStackNavigator();
@@ -50,8 +53,7 @@ function App(): React.JSX.Element {
                   component={SignInScreen}
                   options={{
                     title: 'Sign in to get stars!',
-                    gestureEnabled: false,
-                    headerLeft: () => null,
+                    headerRight: () => <SignUpLink />,
                   }}
                 />
 
@@ -60,8 +62,8 @@ function App(): React.JSX.Element {
                   component={SignUpScreen}
                   options={{
                     title: 'Sign up to get stars!',
-                    gestureEnabled: false,
-                    headerLeft: () => null,
+                    headerBackTitle: 'Sign in',
+                    headerLeft: () => <BackLink />,
                   }}
                 />
 
@@ -70,7 +72,7 @@ function App(): React.JSX.Element {
                   component={HomeScreen}
                   options={{
                     gestureEnabled: false,
-                    // eslint-disable-next-line react/no-unstable-nested-components
+
                     header: props => <Header {...props} />,
                   }}
                 />

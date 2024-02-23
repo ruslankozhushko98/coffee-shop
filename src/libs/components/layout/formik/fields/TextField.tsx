@@ -7,6 +7,7 @@ import {
   FormControlWrapper,
   FormControlWrapperProps,
 } from 'libs/components/layout/FormControlWrapper';
+import { normalize } from 'libs/utils/helpers';
 
 type TextFieldProps = {
   name: string;
@@ -40,6 +41,7 @@ export const TextField: FC<TextFieldProps> = ({
     >
       <Input
         {...props}
+        style={{ fontSize: normalize(13) }}
         value={field.value}
         onChangeText={field.onChange(name)}
         onBlur={field.onBlur(name)}

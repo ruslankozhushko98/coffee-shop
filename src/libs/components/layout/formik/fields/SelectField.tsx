@@ -17,18 +17,17 @@ type SelectFieldProps = {
   errorVisible?: boolean;
   label?: string;
   labelProps?: IFormControlLabelProps;
-  selectProps?: InterfaceSelectProps;
   formControlProps?: FormControlWrapperProps;
   errorMessageProps?: IFormControlErrorMessageProps;
-} & PropsWithChildren;
+} & InterfaceSelectProps;
 
 export const SelectField: FC<SelectFieldProps> = ({
   name,
   label,
   labelProps,
-  selectProps,
   formControlProps,
   children,
+  ...props
 }) => {
   const [field, meta] = useField(name);
 
@@ -45,7 +44,7 @@ export const SelectField: FC<SelectFieldProps> = ({
       errorMessage={meta.error}
     >
       <Select
-        {...selectProps}
+        {...props}
         defaultValue={field.value}
         onValueChange={field.onChange(name)}
       >
