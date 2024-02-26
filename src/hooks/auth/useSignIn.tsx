@@ -26,15 +26,15 @@ export const useSignIn = () => {
 
       if (user.isVerified) {
         navigate(Screens.HOME_SCREEN);
-
-        if (!isBiometricSetup) {
-          setupBiometrics();
-        }
       } else {
         navigate(Screens.ACCOUNT_VERIFICATION);
       }
 
       setUser(user);
+
+      if (!isBiometricSetup) {
+        setupBiometrics();
+      }
     },
     onSettled() {
       if (isKeyboardOpened) {
