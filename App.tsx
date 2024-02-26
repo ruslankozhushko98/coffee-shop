@@ -23,6 +23,7 @@ import { SignUpScreen } from 'modules/auth/components/screens/SignUpScreen';
 import { SignUpLink } from 'modules/auth/components/layout/SignUpLink';
 import { BackLink } from 'modules/auth/components/layout/BackLink';
 import { HomeScreen } from 'modules/home/components/screens/HomeScreen';
+import { AccountVerificationScreen } from 'modules/account/components/screens/AccountVerificationScreen';
 
 const RootNavigationStack = createStackNavigator();
 
@@ -68,11 +69,18 @@ function App(): React.JSX.Element {
                 />
 
                 <RootNavigationStack.Screen
+                  name={Screens.ACCOUNT_VERIFICATION}
+                  component={AccountVerificationScreen}
+                  options={{
+                    title: 'Verify your account',
+                  }}
+                />
+
+                <RootNavigationStack.Screen
                   name={Screens.HOME_SCREEN}
                   component={HomeScreen}
                   options={{
                     gestureEnabled: false,
-
                     header: props => <Header {...props} />,
                   }}
                 />

@@ -10,7 +10,7 @@ import { SignInDto } from 'modules/auth/utils/types';
 import { SignInFields } from 'modules/auth/components/common/SignIn/SignInFields';
 
 const initialValues: SignInDto = {
-  email: 'asd@asd.asd',
+  email: 'gajshenec@gmail.com',
   password: 'secret',
 };
 

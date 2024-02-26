@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useMemo } from 'react';
+import React, { FC, useEffect } from 'react';
 import { BiometryTypes } from 'react-native-biometrics';
 import { Box, Button, Text } from 'native-base';
 import { useFormikContext } from 'formik';
@@ -17,10 +17,6 @@ export const SignInFields: FC = () => {
   const isKeyboardOpened = useKeyboardOpened();
   const { handleSubmit, isSubmitting } = useFormikContext<SignInDto>();
   const { verifyBiometrics, isBiometricSetup, biometricType } = useBiometrics();
-
-  const isBiometricBtnVisible: boolean = useMemo(() => {
-    return !isKeyboardOpened && isBiometricSetup;
-  }, [isBiometricSetup, isKeyboardOpened]);
 
   useEffect(() => {
     if (isBiometricSetup) {
@@ -62,7 +58,7 @@ export const SignInFields: FC = () => {
           </Text>
         </Button>
 
-        {isBiometricBtnVisible && (
+        {!isKeyboardOpened && (
           <>
             <Text textAlign="center" fontSize="lg" fontWeight="bold" mt={3}>
               Or

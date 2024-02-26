@@ -6,6 +6,8 @@ import { useNavigation } from '@react-navigation/native';
 import { useMutation } from '@tanstack/react-query';
 
 import { useKeyboardOpened } from 'hooks/useKeyboardOpened';
+import { useBiometrics } from 'hooks/useBiometrics';
+import { useGlobalContext } from 'contexts/globalContext';
 import { AsyncStorageKeys, Mutations, Screens } from 'libs/utils/constants';
 import { authService } from 'modules/auth/services';
 
@@ -13,17 +15,26 @@ export const useSignIn = () => {
   const { navigate } = useNavigation();
   const isKeyboardOpened = useKeyboardOpened();
   const toast = useToast();
+  const { setUser } = useGlobalContext();
+  const { setupBiometrics, isBiometricSetup } = useBiometrics();
 
   return useMutation({
     mutationKey: [Mutations.SIGN_IN],
     mutationFn: authService.signIn,
-    async onSuccess(data) {
-      await AsyncStorage.setItem(
-        AsyncStorageKeys.accessToken,
-        data.accessToken,
-      );
+    async onSuccess({ accessToken, user }) {
+      await AsyncStorage.setItem(AsyncStorageKeys.accessToken, accessToken);
 
-      navigate(Screens.HOME_SCREEN);
+      if (user.isVerified) {
+        navigate(Screens.HOME_SCREEN);
+
+        if (!isBiometricSetup) {
+          setupBiometrics();
+        }
+      } else {
+        navigate(Screens.ACCOUNT_VERIFICATION);
+      }
+
+      setUser(user);
     },
     onSettled() {
       if (isKeyboardOpened) {

@@ -9,8 +9,9 @@ import {
 } from 'modules/auth/utils/types';
 import { User } from 'modules/auth/models';
 
-type AccessTokenObj = {
+type AuthObj = {
   accessToken: string;
+  user: User;
 };
 
 class AuthService {
@@ -30,12 +31,12 @@ class AuthService {
     return AuthService._instance;
   }
 
-  public async signIn(dto: SignInDto): Promise<AccessTokenObj> {
+  public async signIn(dto: SignInDto): Promise<AuthObj> {
     const { data } = await httpClient.post('/auth/sign-in', dto);
     return data;
   }
 
-  public async signUp(dto: SignUpDto): Promise<AccessTokenObj> {
+  public async signUp(dto: SignUpDto): Promise<AuthObj> {
     const { data } = await httpClient.post('/auth/sign-up', dto);
     return data;
   }
@@ -51,7 +52,7 @@ class AuthService {
     return httpClient.post('/auth/create-public-key', dto);
   }
 
-  public async authBiometric(dto: AuthBiometricDto): Promise<AccessTokenObj> {
+  public async authBiometric(dto: AuthBiometricDto): Promise<AuthObj> {
     const { data } = await httpClient.post('/auth/auth-biometric', dto);
     return data;
   }

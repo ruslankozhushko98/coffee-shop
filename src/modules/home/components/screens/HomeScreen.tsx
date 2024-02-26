@@ -2,14 +2,12 @@ import React, { FC, useEffect } from 'react';
 import { Text, View } from 'native-base';
 import { useQuery } from '@tanstack/react-query';
 
-import { useBiometrics } from 'hooks/useBiometrics';
 import { useGlobalContext } from 'contexts/globalContext';
 import { Queries } from 'libs/utils/constants';
 import { authService } from 'modules/auth/services';
 
 export const HomeScreen: FC = () => {
   const { setUser, user } = useGlobalContext();
-  const { setupBiometrics, isBiometricSetup } = useBiometrics();
 
   const { isLoading, data } = useQuery({
     queryKey: [Queries.FETCH_ME],
@@ -17,16 +15,11 @@ export const HomeScreen: FC = () => {
   });
 
   useEffect(() => {
-    setUser(data || null);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data]);
-
-  useEffect(() => {
-    if (!isBiometricSetup && user) {
-      setupBiometrics();
+    if (!user) {
+      setUser(data || null);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isBiometricSetup, user]);
+  }, [data, user]);
 
   return (
     <View flex={1} p={2}>

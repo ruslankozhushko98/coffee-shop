@@ -6,6 +6,7 @@ import { Text, useToast } from 'native-base';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { useKeyboardOpened } from 'hooks/useKeyboardOpened';
+import { useBiometrics } from 'hooks/useBiometrics';
 import { AsyncStorageKeys, Mutations, Screens } from 'libs/utils/constants';
 import { authService } from 'modules/auth/services';
 
@@ -13,17 +14,16 @@ export const useSignUp = () => {
   const { navigate } = useNavigation();
   const isKeyboardOpened = useKeyboardOpened();
   const toast = useToast();
+  const { setupBiometrics } = useBiometrics();
 
   return useMutation({
     mutationKey: [Mutations.SIGN_UP],
     mutationFn: authService.signUp,
-    async onSuccess(data) {
-      await AsyncStorage.setItem(
-        AsyncStorageKeys.accessToken,
-        data.accessToken,
-      );
+    async onSuccess({ accessToken }) {
+      await AsyncStorage.setItem(AsyncStorageKeys.accessToken, accessToken);
 
       navigate(Screens.HOME_SCREEN);
+      setupBiometrics();
     },
     onSettled() {
       if (isKeyboardOpened) {
