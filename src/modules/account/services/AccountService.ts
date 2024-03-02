@@ -3,6 +3,10 @@ import { AxiosResponse } from 'axios';
 import { httpClient } from 'libs/utils/config';
 import { AccountVerificationDto } from 'modules/account/utils/types';
 
+type MsgOpts = {
+  message: string;
+};
+
 class AccountService {
   private static _instance: AccountService;
 
@@ -20,16 +24,14 @@ class AccountService {
     return AccountService._instance;
   }
 
-  public requestOTC(
-    userId: number,
-  ): Promise<AxiosResponse<{ message: string }>> {
+  public requestOTC(userId: number): Promise<AxiosResponse<MsgOpts>> {
     return httpClient.post('/account/create-otc', { userId });
   }
 
-  public verifyAccount(
+  public activateAccount(
     dto: AccountVerificationDto,
-  ): Promise<AxiosResponse<{ message: string }>> {
-    return httpClient.post('/account/email/verify', dto);
+  ): Promise<AxiosResponse<MsgOpts>> {
+    return httpClient.post('/account/activate', dto);
   }
 }
 

@@ -2,19 +2,19 @@ import React, { FC } from 'react';
 import { Text, View } from 'native-base';
 import { Formik, FormikHelpers } from 'formik';
 
-import { useVerifyAccount } from 'hooks/account/useVerifyAccount';
+import { useActivateAccount } from 'hooks/account/useActivateAccount';
 import { useGlobalContext } from 'contexts/globalContext';
 import { VerificationCodeInitialValues } from 'modules/account/utils/types';
 import { accountVerificationSchema } from 'modules/account/utils/validation';
-import { AccountVerificationForm } from 'modules/account/components/common/AccountVerificationForm';
+import { AccountActivationForm } from 'modules/account/components/common/AccountActivationForm';
 
 const initialValues: VerificationCodeInitialValues = {
   code: '',
 };
 
-export const AccountVerificationScreen: FC = () => {
+export const AccountActivationScreen: FC = () => {
   const { user } = useGlobalContext();
-  const { mutate } = useVerifyAccount();
+  const { mutate } = useActivateAccount();
 
   const handleSubmit = (
     values: VerificationCodeInitialValues,
@@ -31,7 +31,7 @@ export const AccountVerificationScreen: FC = () => {
   return (
     <View p={4}>
       <Text fontSize="xl" fontWeight="bold" mb={5}>
-        Verification code has been sent to your email!
+        Activation code has been sent to your email!
       </Text>
 
       <Formik
@@ -39,7 +39,7 @@ export const AccountVerificationScreen: FC = () => {
         validationSchema={accountVerificationSchema}
         onSubmit={handleSubmit}
       >
-        <AccountVerificationForm />
+        <AccountActivationForm />
       </Formik>
     </View>
   );

@@ -1,5 +1,6 @@
 import React, { FC, useEffect } from 'react';
 import { BiometryTypes } from 'react-native-biometrics';
+import { useNavigation } from '@react-navigation/native';
 import { Box, Button, Text } from 'native-base';
 import { useFormikContext } from 'formik';
 
@@ -7,6 +8,7 @@ import { useKeyboardOpened } from 'hooks/useKeyboardOpened';
 import { useBiometrics } from 'hooks/useBiometrics';
 import FaceID from 'libs/assets/icons/face-id.svg';
 import TouchID from 'libs/assets/icons/touch-id.svg';
+import { Screens } from 'libs/utils/constants';
 import { TextField } from 'libs/components/layout/formik/fields';
 import { SignInDto } from 'modules/auth/utils/types';
 import { AuthLayout } from 'modules/auth/components/layout/AuthLayout';
@@ -14,6 +16,7 @@ import { AuthLayout } from 'modules/auth/components/layout/AuthLayout';
 import { styles } from './styles';
 
 export const SignInFields: FC = () => {
+  const { navigate } = useNavigation();
   const isKeyboardOpened = useKeyboardOpened();
   const { handleSubmit, isSubmitting } = useFormikContext<SignInDto>();
   const { verifyBiometrics, isBiometricSetup, biometricType } = useBiometrics();
@@ -24,6 +27,9 @@ export const SignInFields: FC = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isBiometricSetup]);
+
+  const goToForgotPassword = (): void =>
+    navigate(Screens.FORGOT_PASSWORD_STACK);
 
   return (
     <AuthLayout>
@@ -39,7 +45,7 @@ export const SignInFields: FC = () => {
         <TextField
           name="password"
           label="Password"
-          labelProps={{ pt: 3 }}
+          labelProps={{ pt: isKeyboardOpened ? 1 : 3 }}
           variant="underlined"
           placeholder="Enter your password"
           type="password"
@@ -47,7 +53,18 @@ export const SignInFields: FC = () => {
         />
 
         <Button
-          mt={4}
+          variant="link"
+          mt={!isKeyboardOpened ? 2 : null}
+          alignSelf="flex-end"
+          onPress={goToForgotPassword}
+        >
+          <Text fontSize="sm" fontWeight="bold" color="tertiary.600">
+            Forgot password
+          </Text>
+        </Button>
+
+        <Button
+          mt={!isKeyboardOpened ? 2 : null}
           shadow={2}
           onPress={handleSubmit}
           disabled={isSubmitting}
@@ -58,7 +75,7 @@ export const SignInFields: FC = () => {
           </Text>
         </Button>
 
-        {!isKeyboardOpened && (
+        {!isKeyboardOpened && isBiometricSetup && (
           <>
             <Text textAlign="center" fontSize="lg" fontWeight="bold" mt={3}>
               Or

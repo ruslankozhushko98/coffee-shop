@@ -21,9 +21,10 @@ import { Header } from 'libs/components/layout/Header';
 import { SignInScreen } from 'modules/auth/components/screens/SignInScreen';
 import { SignUpScreen } from 'modules/auth/components/screens/SignUpScreen';
 import { SignUpLink } from 'modules/auth/components/layout/SignUpLink';
-import { BackLink } from 'modules/auth/components/layout/BackLink';
+import { SignInLink } from 'modules/auth/components/layout/SignInLink';
 import { HomeScreen } from 'modules/home/components/screens/HomeScreen';
-import { AccountVerificationScreen } from 'modules/account/components/screens/AccountVerificationScreen';
+import { AccountActivationScreen } from 'modules/account/components/screens/AccountActivationScreen';
+import { ForgotPasswordStack } from 'modules/forgot-password/navigation/ForgotPasswordStack';
 
 const RootNavigationStack = createStackNavigator();
 
@@ -63,16 +64,15 @@ function App(): React.JSX.Element {
                   component={SignUpScreen}
                   options={{
                     title: 'Sign up to get stars!',
-                    headerBackTitle: 'Sign in',
-                    headerLeft: () => <BackLink />,
+                    headerLeft: () => <SignInLink />,
                   }}
                 />
 
                 <RootNavigationStack.Screen
-                  name={Screens.ACCOUNT_VERIFICATION}
-                  component={AccountVerificationScreen}
+                  name={Screens.ACCOUNT_ACTIVATION}
+                  component={AccountActivationScreen}
                   options={{
-                    title: 'Verify your account',
+                    title: 'Activate your account',
                   }}
                 />
 
@@ -82,6 +82,14 @@ function App(): React.JSX.Element {
                   options={{
                     gestureEnabled: false,
                     header: props => <Header {...props} />,
+                  }}
+                />
+
+                <RootNavigationStack.Screen
+                  name={Screens.FORGOT_PASSWORD_STACK}
+                  component={ForgotPasswordStack}
+                  options={{
+                    headerShown: false,
                   }}
                 />
               </RootNavigationStack.Navigator>

@@ -24,7 +24,7 @@ export const useSignIn = () => {
     async onSuccess({ accessToken, user }) {
       await AsyncStorage.setItem(AsyncStorageKeys.accessToken, accessToken);
 
-      if (user.isVerified) {
+      if (user.isActivated) {
         navigate(Screens.HOME_SCREEN);
       } else {
         navigate(Screens.ACCOUNT_VERIFICATION);

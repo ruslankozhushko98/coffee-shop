@@ -7,19 +7,19 @@ import { useGlobalContext } from 'contexts/globalContext';
 import { Mutations, Screens } from 'libs/utils/constants';
 import { accountService } from 'modules/account/services';
 
-export const useVerifyAccount = () => {
+export const useActivateAccount = () => {
   const { navigate } = useNavigation();
   const toast = useToast();
   const { user, setUser } = useGlobalContext();
 
   return useMutation({
-    mutationKey: [Mutations.VERIFY_ACCOUNT],
-    mutationFn: accountService.verifyAccount,
+    mutationKey: [Mutations.ACTIVATE_ACCOUNT],
+    mutationFn: accountService.activateAccount,
     onSuccess() {
       if (user) {
         setUser({
           ...user,
-          isVerified: true,
+          isActivated: true,
         });
       }
 
