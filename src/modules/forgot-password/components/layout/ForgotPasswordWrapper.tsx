@@ -5,14 +5,12 @@ type Props = {
   title: string;
 } & PropsWithChildren;
 
-export const ForgotPasswordWrapper: FC<Props> = ({ title, children }) => {
-  return (
-    <View p={4}>
-      <Text fontSize="xl" fontWeight="bold" mb={5}>
-        {title}
-      </Text>
+export const ForgotPasswordWrapper: FC<Props> = ({ title, children }) => (
+  <View p={4}>
+    <Text fontSize="xl" fontWeight="bold" mb={5}>
+      {title}
+    </Text>
 
-      {children}
-    </View>
-  );
-};
+    {children}
+  </View>
+);
