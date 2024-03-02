@@ -4,7 +4,7 @@ import { Formik } from 'formik';
 
 import { Screens } from 'libs/utils/constants';
 import { enterEmailValidationSchema } from 'modules/forgot-password/utils/validation';
-import { ForgotPasswordWrapper } from 'modules/forgot-password/layout/ForgotPasswordWrapper';
+import { ForgotPasswordWrapper } from 'modules/forgot-password/components/layout/ForgotPasswordWrapper';
 import { EnterEmailForm } from 'modules/forgot-password/components/common/EnterEmail/EnterEmailForm';
 
 export const EnterEmailScreen: FC = () => {

@@ -5,7 +5,7 @@ import { Formik, FormikHelpers } from 'formik';
 import { Screens } from 'libs/utils/constants';
 import { PasswordObj } from 'modules/forgot-password/utils/types';
 import { createPasswordValidationSchema } from 'modules/forgot-password/utils/validation';
-import { ForgotPasswordWrapper } from 'modules/forgot-password/layout/ForgotPasswordWrapper';
+import { ForgotPasswordWrapper } from 'modules/forgot-password/components/layout/ForgotPasswordWrapper';
 import { NewPasswordForm } from 'modules/forgot-password/components/common/NewPassword/NewPasswordForm';
 
 const initialValues: PasswordObj = {

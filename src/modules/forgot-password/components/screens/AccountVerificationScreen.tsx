@@ -4,7 +4,7 @@ import { Formik, FormikHelpers } from 'formik';
 
 import { Screens } from 'libs/utils/constants';
 import { VerificationCodeInitialValues } from 'modules/account/utils/types';
-import { ForgotPasswordWrapper } from 'modules/forgot-password/layout/ForgotPasswordWrapper';
+import { ForgotPasswordWrapper } from 'modules/forgot-password/components/layout/ForgotPasswordWrapper';
 import { AccountVerificationForm } from 'modules/forgot-password/components/common/AccountVerification/AccountVerificationForm';
 
 const initialValues: VerificationCodeInitialValues = {
