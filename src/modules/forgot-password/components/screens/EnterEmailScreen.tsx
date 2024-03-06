@@ -1,24 +1,27 @@
 import React, { FC } from 'react';
-import { useNavigation } from '@react-navigation/native';
 import { Formik } from 'formik';
 
-import { Screens } from 'libs/utils/constants';
+import { useRequestAccountVerification } from 'hooks/account/useRequestAccountVerification';
 import { enterEmailValidationSchema } from 'modules/forgot-password/utils/validation';
+import { EnterEmailInitialValues } from 'modules/forgot-password/utils/types';
 import { ForgotPasswordWrapper } from 'modules/forgot-password/components/layout/ForgotPasswordWrapper';
 import { EnterEmailForm } from 'modules/forgot-password/components/common/EnterEmail/EnterEmailForm';
 
-export const EnterEmailScreen: FC = () => {
-  const { navigate } = useNavigation();
+const initialValues = {
+  email: 'gajshenec@gmail.com',
+};
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const handleSubmit = (values: { email: string }): void => {
-    navigate(Screens.FORGOT_PASSWORD_ACCOUNT_VERIFICATION_SCREEN);
+export const EnterEmailScreen: FC = () => {
+  const { mutate } = useRequestAccountVerification();
+
+  const handleSubmit = (values: EnterEmailInitialValues): void => {
+    mutate(values.email);
   };
 
   return (
-    <ForgotPasswordWrapper title="Enter your email so we could send verification code!">
+    <ForgotPasswordWrapper title="Enter your email so we could send a verification code!">
       <Formik
-        initialValues={{ email: '' }}
+        initialValues={initialValues}
         validationSchema={enterEmailValidationSchema}
         onSubmit={handleSubmit}
       >

@@ -3,9 +3,10 @@ import { Button, Text, View } from 'native-base';
 import { useFormikContext } from 'formik';
 
 import { TextField } from 'libs/components/layout/formik/fields';
+import { EnterEmailInitialValues } from 'modules/forgot-password/utils/types';
 
 export const EnterEmailForm: FC = () => {
-  const { handleSubmit } = useFormikContext();
+  const { handleSubmit } = useFormikContext<EnterEmailInitialValues>();
 
   return (
     <View>

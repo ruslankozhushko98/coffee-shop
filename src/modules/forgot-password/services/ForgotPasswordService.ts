@@ -1,3 +1,7 @@
+import { httpClient } from 'libs/utils/config';
+import { User } from 'modules/auth/models';
+import { ResetPasswordDto } from 'modules/forgot-password/utils/types';
+
 class ForgotPasswordService {
   private static _instance: ForgotPasswordService;
 
@@ -13,6 +17,11 @@ class ForgotPasswordService {
     }
 
     return ForgotPasswordService._instance;
+  }
+
+  public async resetPassword(dto: ResetPasswordDto): Promise<User> {
+    const { data } = await httpClient.put('/account/reset-password', dto);
+    return data;
   }
 }
 

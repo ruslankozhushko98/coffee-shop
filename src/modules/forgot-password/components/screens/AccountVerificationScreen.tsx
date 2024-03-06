@@ -1,24 +1,31 @@
 import React, { FC } from 'react';
-import { useNavigation } from '@react-navigation/native';
 import { Formik, FormikHelpers } from 'formik';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { Screens } from 'libs/utils/constants';
+import { useVerifyAccount } from 'hooks/account/useVerifyAccount';
 import { VerificationCodeInitialValues } from 'modules/account/utils/types';
 import { ForgotPasswordWrapper } from 'modules/forgot-password/components/layout/ForgotPasswordWrapper';
 import { AccountVerificationForm } from 'modules/forgot-password/components/common/AccountVerification/AccountVerificationForm';
+import { AsyncStorageKeys } from 'libs/utils/constants';
 
 const initialValues: VerificationCodeInitialValues = {
   code: '',
 };
 
 export const AccountVerificationScreen: FC = () => {
-  const { navigate } = useNavigation();
+  const { mutate } = useVerifyAccount();
 
-  const handleSubmit = (
+  const handleSubmit = async (
     values: VerificationCodeInitialValues,
     { setSubmitting }: FormikHelpers<VerificationCodeInitialValues>,
-  ): void => {
-    navigate(Screens.FORGOT_PASSWORD_NEW_PASSWORD_SCREEN);
+  ): Promise<void> => {
+    const userId = await AsyncStorage.getItem(AsyncStorageKeys.userId);
+
+    mutate({
+      ...values,
+      userId: Number(userId),
+    });
+
     setSubmitting(false);
   };
 

@@ -27,7 +27,7 @@ export const useSignIn = () => {
       if (user.isActivated) {
         navigate(Screens.HOME_SCREEN);
       } else {
-        navigate(Screens.ACCOUNT_VERIFICATION);
+        navigate(Screens.ACCOUNT_ACTIVATION);
       }
 
       setUser(user);

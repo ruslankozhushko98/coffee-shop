@@ -1,7 +1,11 @@
 import { AxiosResponse } from 'axios';
 
 import { httpClient } from 'libs/utils/config';
-import { AccountVerificationDto } from 'modules/account/utils/types';
+import {
+  AccountVerificationDto,
+  VerificationResponse,
+} from 'modules/account/utils/types';
+import { UserCheckObj } from 'modules/forgot-password/utils/types';
 
 type MsgOpts = {
   message: string;
@@ -31,7 +35,21 @@ class AccountService {
   public activateAccount(
     dto: AccountVerificationDto,
   ): Promise<AxiosResponse<MsgOpts>> {
-    return httpClient.post('/account/activate', dto);
+    return httpClient.post('/account/email/activate', dto);
+  }
+
+  public async requestAccountVerification(
+    email: string,
+  ): Promise<UserCheckObj> {
+    const { data } = await httpClient.post('/account/check-user', { email });
+    return data;
+  }
+
+  public async verifyAccount(
+    dto: AccountVerificationDto,
+  ): Promise<VerificationResponse> {
+    const { data } = await httpClient.post('/account/email/verify', dto);
+    return data;
   }
 }
 

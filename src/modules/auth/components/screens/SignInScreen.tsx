@@ -11,7 +11,7 @@ import { SignInFields } from 'modules/auth/components/common/SignIn/SignInFields
 
 const initialValues: SignInDto = {
   email: 'gajshenec@gmail.com',
-  password: 'secret',
+  password: 'Secret1!',
 };
 
 export const SignInScreen: FC = () => {

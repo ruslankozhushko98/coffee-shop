@@ -18,7 +18,7 @@ export const NewPasswordForm: FC = () => {
       />
 
       <TextField
-        name="confirm-password"
+        name="confirmPassword"
         label="Confirm password"
         placeholder="Confirm password"
         variant="underlined"

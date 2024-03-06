@@ -1,8 +1,9 @@
 import React, { FC } from 'react';
-import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Formik, FormikHelpers } from 'formik';
 
-import { Screens } from 'libs/utils/constants';
+import { useResetPassword } from 'hooks/forgot-password/useResetPassword';
+import { AsyncStorageKeys } from 'libs/utils/constants';
 import { PasswordObj } from 'modules/forgot-password/utils/types';
 import { createPasswordValidationSchema } from 'modules/forgot-password/utils/validation';
 import { ForgotPasswordWrapper } from 'modules/forgot-password/components/layout/ForgotPasswordWrapper';
@@ -14,14 +15,25 @@ const initialValues: PasswordObj = {
 };
 
 export const NewPasswordScreen: FC = () => {
-  const { navigate } = useNavigation();
+  const { mutate } = useResetPassword();
 
-  const handleSubmit = (
+  const handleSubmit = async (
     values: PasswordObj,
     { setSubmitting }: FormikHelpers<PasswordObj>,
-  ): void => {
+  ): Promise<void> => {
+    const token = await AsyncStorage.getItem(
+      AsyncStorageKeys.verificationToken,
+    );
+
+    const userId = await AsyncStorage.getItem(AsyncStorageKeys.userId);
+
+    mutate({
+      ...values,
+      userId: Number(userId),
+      resetToken: String(token),
+    });
+
     setSubmitting(false);
-    navigate(Screens.HOME_SCREEN);
   };
 
   return (

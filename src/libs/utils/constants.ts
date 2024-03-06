@@ -32,10 +32,13 @@ export enum Mutations {
   SIGN_UP = 'SIGN_UP',
   ACTIVATE_ACCOUNT = 'ACTIVATE_ACCOUNT',
   VERIFY_ACCOUNT = 'VERIFY_ACCOUNT',
+  REQUEST_ACCOUNT_VERIFICATION = 'REQUEST_ACCOUNT_VERIFICATION',
+  RESET_PASSWORD = 'RESET_PASSWORD',
 }
 
 export enum AsyncStorageKeys {
   accessToken = 'access_token',
+  verificationToken = 'verificationToken',
   userId = 'user_id',
   biometryType = 'biometry_type',
 }

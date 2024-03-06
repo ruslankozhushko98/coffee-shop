@@ -58,7 +58,7 @@ export const SignInFields: FC = () => {
           alignSelf="flex-end"
           onPress={goToForgotPassword}
         >
-          <Text fontSize="sm" fontWeight="bold" color="tertiary.600">
+          <Text fontSize="sm" fontWeight="bold" color="tertiary.600" underline>
             Forgot password
           </Text>
         </Button>
