@@ -946,8 +946,6 @@ PODS:
     - React-debug
   - react-native-biometrics (3.0.1):
     - React-Core
-  - react-native-date-picker (4.4.0):
-    - React-Core
   - react-native-safe-area-context (3.3.2):
     - React-Core
   - React-nativeconfig (0.73.6)
@@ -1119,6 +1117,8 @@ PODS:
     - React-perflogger (= 0.73.6)
   - RNCAsyncStorage (1.21.0):
     - React-Core
+  - RNDateTimePicker (7.6.3):
+    - React-Core
   - RNGestureHandler (2.14.1):
     - glog
     - RCT-Folly (= 2022.05.16.00)
@@ -1195,7 +1195,6 @@ DEPENDENCIES:
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - React-Mapbuffer (from `../node_modules/react-native/ReactCommon`)
   - react-native-biometrics (from `../node_modules/react-native-biometrics`)
-  - react-native-date-picker (from `../node_modules/react-native-date-picker`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - React-nativeconfig (from `../node_modules/react-native/ReactCommon`)
   - React-NativeModulesApple (from `../node_modules/react-native/ReactCommon/react/nativemodule/core/platform/ios`)
@@ -1218,6 +1217,7 @@ DEPENDENCIES:
   - React-utils (from `../node_modules/react-native/ReactCommon/react/utils`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
+  - "RNDateTimePicker (from `../node_modules/@react-native-community/datetimepicker`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
@@ -1299,8 +1299,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   react-native-biometrics:
     :path: "../node_modules/react-native-biometrics"
-  react-native-date-picker:
-    :path: "../node_modules/react-native-date-picker"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
   React-nativeconfig:
@@ -1345,6 +1343,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   RNCAsyncStorage:
     :path: "../node_modules/@react-native-async-storage/async-storage"
+  RNDateTimePicker:
+    :path: "../node_modules/@react-native-community/datetimepicker"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
   RNReanimated:
@@ -1399,7 +1399,6 @@ SPEC CHECKSUMS:
   React-logger: 3eb80a977f0d9669468ef641a5e1fabbc50a09ec
   React-Mapbuffer: 84ea43c6c6232049135b1550b8c60b2faac19fab
   react-native-biometrics: 352e5a794bfffc46a0c86725ea7dc62deb085bdc
-  react-native-date-picker: ebcb936d72fc3bbde0dea47c6641e913523231ca
   react-native-safe-area-context: 584dc04881deb49474363f3be89e4ca0e854c057
   React-nativeconfig: b4d4e9901d4cabb57be63053fd2aa6086eb3c85f
   React-NativeModulesApple: cd26e56d56350e123da0c1e3e4c76cb58a05e1ee
@@ -1422,6 +1421,7 @@ SPEC CHECKSUMS:
   React-utils: d16c1d2251c088ad817996621947d0ac8167b46c
   ReactCommon: 2aa35648354bd4c4665b9a5084a7d37097b89c10
   RNCAsyncStorage: 618d03a5f52fbccb3d7010076bc54712844c18ef
+  RNDateTimePicker: 7b38b71bcd7c4cfa1cb95f2dff9a4f1faed2dced
   RNGestureHandler: 15c6ef51acba34c49ff03003806cf5dd6098f383
   RNReanimated: 4f0931c29b1535a3a40a6c06797b1d9d39f50754
   RNScreens: 17e2f657f1b09a71ec3c821368a04acbb7ebcb46

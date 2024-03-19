@@ -3,11 +3,11 @@ import { IInputProps, Input } from 'native-base';
 import { useField } from 'formik';
 import { IFormControlLabelProps } from 'native-base/lib/typescript/components/composites/FormControl/types';
 
+import { normalize } from 'libs/utils/helpers';
 import {
   FormControlWrapper,
   FormControlWrapperProps,
 } from 'libs/components/layout/FormControlWrapper';
-import { normalize } from 'libs/utils/helpers';
 
 type TextFieldProps = {
   name: string;
@@ -23,6 +23,8 @@ export const TextField: FC<TextFieldProps> = ({
   label,
   labelProps,
   formControlProps,
+  onChangeText,
+  onBlur,
   ...props
 }) => {
   const [field, meta] = useField(name);
@@ -36,15 +38,15 @@ export const TextField: FC<TextFieldProps> = ({
       {...formControlProps}
       label={label}
       labelProps={labelProps}
-      errorVisible={isError && errorVisible}
-      errorMessage={meta.error}
+      errorVisible={isError}
+      errorMessage={errorVisible ? meta.error : ''}
     >
       <Input
         {...props}
         style={{ fontSize: normalize(13) }}
         value={field.value}
-        onChangeText={field.onChange(name)}
-        onBlur={field.onBlur(name)}
+        onChangeText={onChangeText || field.onChange(name)}
+        onBlur={onBlur || field.onBlur(name)}
       />
     </FormControlWrapper>
   );
