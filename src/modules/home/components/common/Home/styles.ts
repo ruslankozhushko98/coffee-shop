@@ -1,6 +1,9 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
+  flexContainer: {
+    flex: 1,
+  },
   // eslint-disable-next-line react-native/no-color-literals
   rowItem: {
     flexDirection: 'row',

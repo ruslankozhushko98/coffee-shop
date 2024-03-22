@@ -1,7 +1,7 @@
 /* eslint-disable indent */
 import React, { FC, ReactNode } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Text } from 'native-base';
 
 import { useFetchMe } from 'hooks/auth/useFetchMe';
@@ -23,7 +23,7 @@ const renderTabBarIcon =
     (
       <Icon
         name={iconName}
-        size={normalize(focused ? 20 : 16)}
+        size={normalize(25)}
         color={focused ? '#059669' : color}
       />
     );
@@ -64,7 +64,7 @@ export const HomeStack: FC = () => {
           name={Screens.HOME_ORDERS_SCREEN}
           component={OrdersScreen}
           options={{
-            tabBarIcon: renderTabBarIcon('glass'),
+            tabBarIcon: renderTabBarIcon('receipt'),
             tabBarLabel: renderTabBarLabel('Orders'),
           }}
         />
@@ -73,7 +73,7 @@ export const HomeStack: FC = () => {
           name={Screens.HOME_PROFILE_SCREEN}
           component={ProfileScreen}
           options={{
-            tabBarIcon: renderTabBarIcon('user'),
+            tabBarIcon: renderTabBarIcon('account-circle'),
             tabBarLabel: renderTabBarLabel('Profile'),
           }}
         />
