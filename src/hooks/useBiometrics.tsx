@@ -98,7 +98,7 @@ export const useBiometrics = () => {
 
         await AsyncStorage.setItem(AsyncStorageKeys.accessToken, accessToken);
 
-        navigate(Screens.HOME_SCREEN);
+        navigate(Screens.HOME_STACK);
       }
 
       if (error) {

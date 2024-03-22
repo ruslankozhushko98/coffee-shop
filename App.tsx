@@ -17,14 +17,13 @@ import { NativeBaseProvider } from 'native-base';
 import { GlobalContextProvider } from 'contexts/globalContext';
 import { queryClient } from 'libs/utils/config';
 import { Screens } from 'libs/utils/constants';
-import { Header } from 'libs/components/layout/Header';
 import { SignInScreen } from 'modules/auth/components/screens/SignInScreen';
 import { SignUpScreen } from 'modules/auth/components/screens/SignUpScreen';
 import { SignUpLink } from 'modules/auth/components/layout/SignUpLink';
 import { SignInLink } from 'modules/auth/components/layout/SignInLink';
-import { HomeScreen } from 'modules/home/components/screens/HomeScreen';
 import { AccountActivationScreen } from 'modules/account/components/screens/AccountActivationScreen';
 import { ForgotPasswordStack } from 'modules/forgot-password/navigation/ForgotPasswordStack';
+import { HomeStack } from 'modules/home/navigation/HomeStack';
 
 const RootNavigationStack = createStackNavigator();
 
@@ -77,11 +76,11 @@ function App(): React.JSX.Element {
                 />
 
                 <RootNavigationStack.Screen
-                  name={Screens.HOME_SCREEN}
-                  component={HomeScreen}
+                  name={Screens.HOME_STACK}
+                  component={HomeStack}
                   options={{
                     gestureEnabled: false,
-                    header: props => <Header {...props} />,
+                    headerShown: false,
                   }}
                 />
 

@@ -13,3 +13,19 @@ export function normalize(size: number): number {
     return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2;
   }
 }
+
+export function debounce(func: Function, timeout = 300) {
+  let timer: NodeJS.Timeout;
+
+  return (...args: any) => {
+    clearTimeout(timer);
+
+    timer = setTimeout(() => {
+      func.apply(this, args);
+    }, timeout);
+  };
+}
+
+export function formatPrice(price: number): string {
+  return `$${Number(price).toFixed(2)}`;
+}

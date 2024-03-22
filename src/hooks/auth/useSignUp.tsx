@@ -22,7 +22,7 @@ export const useSignUp = () => {
     async onSuccess({ accessToken }) {
       await AsyncStorage.setItem(AsyncStorageKeys.accessToken, accessToken);
 
-      navigate(Screens.HOME_SCREEN);
+      navigate(Screens.HOME_STACK);
       setupBiometrics();
     },
     onSettled() {

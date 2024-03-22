@@ -1,0 +1,26 @@
+import React, { FC } from 'react';
+import { ActivityIndicator } from 'react-native';
+import { View } from 'native-base';
+
+type Props = {
+  backgroundColor?: string;
+};
+
+export const Loading: FC<Props> = ({
+  backgroundColor = 'rgba(0, 0, 0, 0.3)',
+  ...props
+}) => (
+  <View
+    flex={1}
+    alignItems="center"
+    justifyContent="center"
+    position="absolute"
+    zIndex={9}
+    backgroundColor={backgroundColor}
+    w="full"
+    h="full"
+    {...props}
+  >
+    <ActivityIndicator color="#059669" size="large" />
+  </View>
+);

@@ -9,13 +9,18 @@ export const DATE_FORMAT = 'mm/dd/yyyy';
 export const SCREEN_WIDTH = Dimensions.get('screen').width;
 export const SCREEN_HEIGHT = Dimensions.get('screen').height;
 
+export const DEBOUNCE_DELAY = 1500;
+
 export enum Screens {
   SIGN_IN_SCREEN = 'SIGN_IN_SCREEN',
   SIGN_UP_SCREEN = 'SIGN_UP_SCREEN',
 
   ACCOUNT_ACTIVATION = 'ACCOUNT_ACTIVATION',
 
+  HOME_STACK = 'HOME_STACK',
   HOME_SCREEN = 'HOME_SCREEN',
+  HOME_ORDERS_SCREEN = 'ORDERS_SCREEN',
+  HOME_PROFILE_SCREEN = 'PROFILE_SCREEN',
 
   FORGOT_PASSWORD_STACK = 'FORGOT_PASSWORD_STACK',
   FORGOT_PASSWORD_ENTER_EMAIL_SCREEN = 'FORGOT_PASSWORD_ENTER_EMAIL_SCREEN',
@@ -25,6 +30,8 @@ export enum Screens {
 
 export enum Queries {
   FETCH_ME = 'FETCH_ME',
+  FETCH_BEVERAGES = 'FETCH_BEVERAGES',
+  FETCH_BEVERAGE_BY_ID = 'FETCH_BEVERAGE_BY_ID',
 }
 
 export enum Mutations {
