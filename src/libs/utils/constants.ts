@@ -41,11 +41,12 @@ export enum Mutations {
   VERIFY_ACCOUNT = 'VERIFY_ACCOUNT',
   REQUEST_ACCOUNT_VERIFICATION = 'REQUEST_ACCOUNT_VERIFICATION',
   RESET_PASSWORD = 'RESET_PASSWORD',
+  TOGGLE_BEVERAGE_FAVORITE = 'TOGGLE_BEVERAGE_FAVORITE',
 }
 
 export enum AsyncStorageKeys {
   accessToken = 'access_token',
-  verificationToken = 'verificationToken',
+  verificationToken = 'verification_token',
   userId = 'user_id',
   biometryType = 'biometry_type',
 }

@@ -1,6 +1,9 @@
 import { httpClient } from 'libs/utils/config';
 import { Beverage } from 'modules/home/models';
-import { BeverageOpts } from 'modules/home/utils/types';
+import {
+  BeverageOpts,
+  ToggleBeverageFavoriteDto,
+} from 'modules/home/utils/types';
 
 class MenuService {
   private static _instance: MenuService;
@@ -26,6 +29,13 @@ class MenuService {
 
   public async fetchBeverageById(beverageId: number): Promise<Beverage> {
     const { data } = await httpClient.get(`/menu/${beverageId}`);
+    return data;
+  }
+
+  public async toggleBeverageFavorite(
+    dto: ToggleBeverageFavoriteDto,
+  ): Promise<ToggleBeverageFavoriteDto> {
+    const { data } = await httpClient.put('/menu/toggle-favorite', dto);
     return data;
   }
 }

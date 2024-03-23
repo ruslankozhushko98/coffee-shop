@@ -1,10 +1,19 @@
 import React, { FC } from 'react';
-import { Modal, SafeAreaView } from 'react-native';
+import { Modal, SafeAreaView, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Box, Button, Text, View } from 'native-base';
 
+import { useGlobalContext } from 'contexts/globalContext';
 import { useFetchBeverageById } from 'hooks/home/useFetchBeverageById';
+import { useToggleBeverageFavorite } from 'hooks/home/useToggleBeverageFavorite';
+import CoffeeIcon from 'libs/assets/icons/coffee.svg';
 import { normalize } from 'libs/utils/helpers';
+import {
+  AsyncStorageKeys,
+  SCREEN_HEIGHT,
+  SCREEN_WIDTH,
+} from 'libs/utils/constants';
 import { Loading } from 'libs/components/layout/Loading';
 
 import { styles } from './styles';
@@ -18,9 +27,25 @@ export const BeverageDetailsModal: FC<Props> = ({
   beverageId,
   setBeverageId,
 }) => {
-  const { isLoading, data } = useFetchBeverageById(beverageId);
+  const { user } = useGlobalContext();
+  const { isLoading, data, refetch, isRefetching } =
+    useFetchBeverageById(beverageId);
+  const { mutateAsync, isPending } = useToggleBeverageFavorite();
 
   const handleClose = (): void => setBeverageId(null);
+
+  const toggleFavorite = async (): Promise<void> => {
+    const userId = await AsyncStorage.getItem(AsyncStorageKeys.userId);
+
+    if (userId) {
+      await mutateAsync({
+        beverageId: Number(data?.id),
+        userId: Number(user?.id),
+      });
+
+      refetch();
+    }
+  };
 
   return (
     <Modal
@@ -28,6 +53,10 @@ export const BeverageDetailsModal: FC<Props> = ({
       onDismiss={handleClose}
       animationType="slide"
     >
+      {(isPending || isRefetching) && (
+        <Loading backgroundColor="rgba(0, 0, 0, 0.6)" h="full" />
+      )}
+
       <SafeAreaView style={styles.flexContainer}>
         <Box
           flexDirection="row"
@@ -49,17 +78,35 @@ export const BeverageDetailsModal: FC<Props> = ({
           <Loading backgroundColor="white" />
         ) : (
           <View px={5}>
-            <Icon name="coffee" color="#059669" size={normalize(290)} />
+            <CoffeeIcon
+              style={styles.coffeeIcon}
+              width={SCREEN_WIDTH * 0.7}
+              height={SCREEN_HEIGHT * 0.3}
+            />
 
             <View>
-              <Text
-                fontSize="xl"
-                fontWeight="bold"
-                color="tertiary.600"
-                textDecorationLine="underline"
+              <View
+                flexDirection="row"
+                alignItems="center"
+                justifyContent="space-between"
               >
-                Description:
-              </Text>
+                <Text
+                  fontSize="xl"
+                  fontWeight="bold"
+                  color="tertiary.600"
+                  textDecorationLine="underline"
+                >
+                  Description:
+                </Text>
+
+                <TouchableOpacity onPress={toggleFavorite}>
+                  {data?.isFavorite ? (
+                    <Icon name="star" color="orange" size={normalize(30)} />
+                  ) : (
+                    <Icon name="star-outline" size={normalize(30)} />
+                  )}
+                </TouchableOpacity>
+              </View>
 
               <Text fontSize="xl" fontWeight="bold">
                 {data?.description || '-'}

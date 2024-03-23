@@ -4,6 +4,7 @@ export interface Beverage {
   description: string;
   imgUrl: string;
   price: number;
+  isFavorite: boolean;
   createdAt: string;
   updatedAt: string;
 }

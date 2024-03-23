@@ -21,7 +21,7 @@ export const useFetchBeverageById = (beverageId: number | null) => {
       goBack();
 
       toast.show({
-        placement: 'bottom',
+        placement: 'top',
         title: (
           <Text color="white" fontWeight="bold">
             {error?.message}

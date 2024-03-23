@@ -17,4 +17,7 @@ export const styles = StyleSheet.create({
     shadowRadius: 10,
     shadowOpacity: 0.1,
   },
+  coffeeIcon: {
+    alignSelf: 'center',
+  },
 });

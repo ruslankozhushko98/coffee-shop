@@ -47,7 +47,7 @@ function App(): React.JSX.Element {
           <NavigationContainer>
             <GlobalContextProvider>
               <RootNavigationStack.Navigator
-                initialRouteName={Screens.SIGN_IN_SCREEN}
+                initialRouteName={Screens.HOME_STACK}
               >
                 <RootNavigationStack.Screen
                   name={Screens.SIGN_IN_SCREEN}
