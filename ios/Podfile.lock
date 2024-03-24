@@ -1125,6 +1125,8 @@ PODS:
     - glog
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
+  - RNPermissions (4.1.5):
+    - React-Core
   - RNReanimated (3.8.1):
     - glog
     - RCT-Folly (= 2022.05.16.00)
@@ -1222,6 +1224,7 @@ DEPENDENCIES:
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
   - "RNDateTimePicker (from `../node_modules/@react-native-community/datetimepicker`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNPermissions (from `../node_modules/react-native-permissions`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSVG (from `../node_modules/react-native-svg`)
@@ -1352,6 +1355,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/datetimepicker"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
+  RNPermissions:
+    :path: "../node_modules/react-native-permissions"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
@@ -1429,6 +1434,7 @@ SPEC CHECKSUMS:
   RNCAsyncStorage: 826b603ae9c0f88b5ac4e956801f755109fa4d5c
   RNDateTimePicker: 7b38b71bcd7c4cfa1cb95f2dff9a4f1faed2dced
   RNGestureHandler: 67fb54b3e6ca338a8044e85cd6f340265aa41091
+  RNPermissions: 87aac13521bea6dcb6dfd60b03ac69741ccef2b4
   RNReanimated: 8a4d86eb951a4a99d8e86266dc71d7735c0c30a9
   RNScreens: 17e2f657f1b09a71ec3c821368a04acbb7ebcb46
   RNSVG: 551acb6562324b1d52a4e0758f7ca0ec234e278f
@@ -1436,6 +1442,6 @@ SPEC CHECKSUMS:
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
   Yoga: 805bf71192903b20fc14babe48080582fee65a80
 
-PODFILE CHECKSUM: ce49aa83c9f847f98b407e73ba98c7bf100bb926
+PODFILE CHECKSUM: cc15abb48b55eb957dfbd6f9f00c369b382587b2
 
 COCOAPODS: 1.14.3
