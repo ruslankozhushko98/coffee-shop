@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 
 import { useSignUp } from 'hooks/auth/useSignUp';
 import { DATE_FORMAT } from 'libs/utils/constants';
-import { registerValidationSchema } from 'modules/auth/utils/validation';
+import { signUpValidationSchema } from 'modules/auth/utils/validation';
 import { SignUpDto } from 'modules/auth/utils/types';
 import { GENDER } from 'modules/auth/utils/constants';
 import { SignUpFields } from 'modules/auth/components/common/SignUp/SignUpFields';
@@ -36,7 +36,7 @@ export const SignUpScreen: FC = () => {
   return (
     <Formik
       initialValues={initialValues}
-      validationSchema={registerValidationSchema}
+      validationSchema={signUpValidationSchema}
       onSubmit={handleSubmit}
     >
       <SignUpFields />

@@ -5,7 +5,7 @@ import { Formik, FormikHelpers } from 'formik';
 
 import { useKeyboardOpened } from 'hooks/useKeyboardOpened';
 import { useSignIn } from 'hooks/auth/useSignIn';
-import { loginValidationSchema } from 'modules/auth/utils/validation';
+import { signInValidationSchema } from 'modules/auth/utils/validation';
 import { SignInDto } from 'modules/auth/utils/types';
 import { SignInFields } from 'modules/auth/components/common/SignIn/SignInFields';
 
@@ -34,7 +34,7 @@ export const SignInScreen: FC = () => {
     >
       <Formik
         initialValues={initialValues}
-        validationSchema={loginValidationSchema}
+        validationSchema={signInValidationSchema}
         onSubmit={handleSubmit}
       >
         <SignInFields />

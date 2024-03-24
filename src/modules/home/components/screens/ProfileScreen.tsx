@@ -8,27 +8,25 @@ import { HomeLayout } from 'modules/home/components/layout/HomeLayout';
 export const ProfileScreen: FC = () => {
   const { navigate } = useNavigation();
 
-  const handleGoToLogin = (): void => {
-    navigate(Screens.SIGN_IN_SCREEN);
-  };
+  const handleGoToSignIn = (): void => navigate(Screens.SIGN_IN_SCREEN);
 
   return (
     <HomeLayout>
       <Text fontWeight="bold" fontSize="xl">
-        Login to see your account details!
+        Sign in to see your account details!
       </Text>
 
       <View flexDirection="row" mt={2}>
         <Text fontSize="xl">Go to</Text>
 
-        <Button variant="ghost" onPress={handleGoToLogin} size="md" py={0}>
+        <Button variant="ghost" onPress={handleGoToSignIn} size="md" py={0}>
           <Text
             fontSize="xl"
             fontWeight="bold"
             color="blue.600"
             textDecorationLine="underline"
           >
-            Login
+            Sign in
           </Text>
         </Button>
       </View>
