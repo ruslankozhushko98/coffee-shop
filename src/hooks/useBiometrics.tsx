@@ -7,7 +7,7 @@ import { Text, useToast } from 'native-base';
 
 import { useGlobalContext } from 'contexts/globalContext';
 import { AsyncStorageKeys, Screens } from 'libs/utils/constants';
-import { rnBiometrics } from 'libs/utils/config';
+import { rnBiometrics } from 'libs/config/biometrics';
 import { authService } from 'modules/auth/services';
 
 export const useBiometrics = () => {

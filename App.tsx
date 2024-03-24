@@ -15,12 +15,13 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import { NativeBaseProvider } from 'native-base';
 
 import { GlobalContextProvider } from 'contexts/globalContext';
-import { queryClient } from 'libs/utils/config';
+import { queryClient } from 'libs/config/queryClient';
 import { Screens } from 'libs/utils/constants';
 import { SignInScreen } from 'modules/auth/components/screens/SignInScreen';
 import { SignUpScreen } from 'modules/auth/components/screens/SignUpScreen';
 import { SignUpLink } from 'modules/auth/components/layout/SignUpLink';
 import { SignInLink } from 'modules/auth/components/layout/SignInLink';
+import { BackLink } from 'modules/auth/components/layout/BackLink';
 import { AccountActivationScreen } from 'modules/account/components/screens/AccountActivationScreen';
 import { ForgotPasswordStack } from 'modules/forgot-password/navigation/ForgotPasswordStack';
 import { HomeStack } from 'modules/home/navigation/HomeStack';
@@ -55,6 +56,7 @@ function App(): React.JSX.Element {
                   options={{
                     title: 'Sign in to get stars!',
                     headerRight: () => <SignUpLink />,
+                    headerLeft: () => <BackLink />,
                   }}
                 />
 

@@ -1,4 +1,4 @@
-import { httpClient } from 'libs/utils/config';
+import { httpClient } from 'libs/config/httpClient';
 import { Beverage } from 'modules/home/models';
 import {
   BeverageOpts,

@@ -1,4 +1,4 @@
-import { httpClient } from 'libs/utils/config';
+import { httpClient } from 'libs/config/httpClient';
 import { User } from 'modules/auth/models';
 import { ResetPasswordDto } from 'modules/forgot-password/utils/types';
 

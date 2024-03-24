@@ -17,7 +17,7 @@ export const Header: FC<BottomTabHeaderProps> = () => {
       backgroundColor="white"
     >
       <Text fontWeight="bold" fontSize="xl" color="tertiary.600">
-        Welcome, {user?.firstName}!
+        Welcome, {user?.firstName || 'stranger'}!
       </Text>
     </Box>
   );

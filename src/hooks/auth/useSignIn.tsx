@@ -25,7 +25,7 @@ export const useSignIn = () => {
       await AsyncStorage.setItem(AsyncStorageKeys.accessToken, accessToken);
 
       if (user.isActivated) {
-        navigate(Screens.HOME_STACK);
+        navigate(Screens.HOME_STACK, { screen: Screens.HOME_SCREEN });
       } else {
         navigate(Screens.ACCOUNT_ACTIVATION);
       }

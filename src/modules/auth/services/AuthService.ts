@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios';
 
-import { httpClient } from 'libs/utils/config';
+import { httpClient } from 'libs/config/httpClient';
 import {
   AuthBiometricDto,
   PublicKeyDto,

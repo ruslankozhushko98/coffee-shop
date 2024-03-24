@@ -2,13 +2,9 @@ import 'react-native-url-polyfill/auto';
 
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import ReactNativeBiometrics from 'react-native-biometrics';
-import { QueryClient } from '@tanstack/react-query';
 import { BASE_URL } from '@env';
 
-import { AsyncStorageKeys } from './constants';
-
-export const queryClient = new QueryClient();
+import { AsyncStorageKeys } from 'libs/utils/constants';
 
 export const httpClient = axios.create({
   baseURL: BASE_URL,
@@ -37,7 +33,3 @@ httpClient.interceptors.response.use(
     throw new Error(error.response.data.message);
   },
 );
-
-export const rnBiometrics = new ReactNativeBiometrics({
-  allowDeviceCredentials: true,
-});

@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import { Modal, SafeAreaView, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Box, Button, Text, View } from 'native-base';
 
 import { useGlobalContext } from 'contexts/globalContext';
@@ -9,11 +8,7 @@ import { useFetchBeverageById } from 'hooks/home/useFetchBeverageById';
 import { useToggleBeverageFavorite } from 'hooks/home/useToggleBeverageFavorite';
 import CoffeeIcon from 'libs/assets/icons/coffee.svg';
 import { normalize } from 'libs/utils/helpers';
-import {
-  AsyncStorageKeys,
-  SCREEN_HEIGHT,
-  SCREEN_WIDTH,
-} from 'libs/utils/constants';
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from 'libs/utils/constants';
 import { Loading } from 'libs/components/layout/Loading';
 
 import { styles } from './styles';
@@ -35,9 +30,7 @@ export const BeverageDetailsModal: FC<Props> = ({
   const handleClose = (): void => setBeverageId(null);
 
   const toggleFavorite = async (): Promise<void> => {
-    const userId = await AsyncStorage.getItem(AsyncStorageKeys.userId);
-
-    if (userId) {
+    if (user?.id) {
       await mutateAsync({
         beverageId: Number(data?.id),
         userId: Number(user?.id),
