@@ -8,7 +8,8 @@
     "send": "Отправить"
   },
   "header": {
-    "title": "Привет, {{name}}!"
+    "title": "Привет, {{name}}!",
+    "guest": "гость"
   },
   "fields": {
     "email": {

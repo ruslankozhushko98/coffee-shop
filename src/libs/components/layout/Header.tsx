@@ -24,7 +24,7 @@ export const Header: FC<BottomTabHeaderProps> = () => {
       backgroundColor="white"
     >
       <Text fontWeight="bold" fontSize="xl" color="tertiary.600">
-        {t('header:title', { name: user?.firstName || 'stranger' })}
+        {t('header:title', { name: user?.firstName || t('header:guest') })}
       </Text>
 
       {!user && (

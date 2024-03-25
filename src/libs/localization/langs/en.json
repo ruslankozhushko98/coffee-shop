@@ -8,7 +8,8 @@
     "send": "Send"
   },
   "header": {
-    "title": "Hey {{name}}!"
+    "title": "Hey {{name}}!",
+    "guest": "guest"
   },
   "fields": {
     "email": {
