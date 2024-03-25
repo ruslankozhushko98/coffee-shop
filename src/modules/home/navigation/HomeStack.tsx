@@ -2,6 +2,7 @@
 import React, { FC, ReactNode } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { useTranslation } from 'react-i18next';
 import { Text } from 'native-base';
 
 import { useFetchMe } from 'hooks/auth/useFetchMe';
@@ -38,6 +39,7 @@ const renderTabBarLabel =
     );
 
 export const HomeStack: FC = () => {
+  const { t } = useTranslation();
   const { isLoading } = useFetchMe();
 
   return (
@@ -56,7 +58,7 @@ export const HomeStack: FC = () => {
           component={HomeScreen}
           options={{
             tabBarIcon: renderTabBarIcon('home'),
-            tabBarLabel: renderTabBarLabel('Home'),
+            tabBarLabel: renderTabBarLabel(t('bottomTabs:home')),
           }}
         />
 
@@ -65,7 +67,7 @@ export const HomeStack: FC = () => {
           component={OrdersScreen}
           options={{
             tabBarIcon: renderTabBarIcon('receipt'),
-            tabBarLabel: renderTabBarLabel('Orders'),
+            tabBarLabel: renderTabBarLabel(t('bottomTabs:orders')),
           }}
         />
 
@@ -74,7 +76,7 @@ export const HomeStack: FC = () => {
           component={ProfileScreen}
           options={{
             tabBarIcon: renderTabBarIcon('account-circle'),
-            tabBarLabel: renderTabBarLabel('Profile'),
+            tabBarLabel: renderTabBarLabel(t('bottomTabs:profile')),
           }}
         />
       </Tab.Navigator>

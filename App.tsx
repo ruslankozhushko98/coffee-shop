@@ -12,6 +12,7 @@ import { Colors } from 'react-native/Libraries/NewAppScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { QueryClientProvider } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import { NativeBaseProvider } from 'native-base';
 
 import { GlobalContextProvider } from 'contexts/globalContext';
@@ -29,6 +30,7 @@ import { HomeStack } from 'modules/home/navigation/HomeStack';
 const RootNavigationStack = createStackNavigator();
 
 function App(): React.JSX.Element {
+  const { t } = useTranslation();
   const isDarkMode = useColorScheme() === 'dark';
 
   const style = {
@@ -54,7 +56,7 @@ function App(): React.JSX.Element {
                   name={Screens.SIGN_IN_SCREEN}
                   component={SignInScreen}
                   options={{
-                    title: 'Sign in to get stars!',
+                    title: t('auth:signInScreen:header:title'),
                     headerRight: () => <SignUpLink />,
                     headerLeft: () => <BackLink />,
                   }}
@@ -64,7 +66,7 @@ function App(): React.JSX.Element {
                   name={Screens.SIGN_UP_SCREEN}
                   component={SignUpScreen}
                   options={{
-                    title: 'Sign up to get stars!',
+                    title: t('auth:signUpScreen:header:title'),
                     headerLeft: () => <SignInLink />,
                   }}
                 />

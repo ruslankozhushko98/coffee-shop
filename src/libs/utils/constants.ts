@@ -49,4 +49,5 @@ export enum AsyncStorageKeys {
   verificationToken = 'verification_token',
   userId = 'user_id',
   biometryType = 'biometry_type',
+  lang = 'lang',
 }

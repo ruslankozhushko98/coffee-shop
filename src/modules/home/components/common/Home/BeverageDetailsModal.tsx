@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { Modal, SafeAreaView, TouchableOpacity } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Box, Button, Text, View } from 'native-base';
 
@@ -22,6 +23,7 @@ export const BeverageDetailsModal: FC<Props> = ({
   beverageId,
   setBeverageId,
 }) => {
+  const { t } = useTranslation();
   const { user } = useGlobalContext();
   const { isLoading, data, refetch, isRefetching } =
     useFetchBeverageById(beverageId);
@@ -59,7 +61,7 @@ export const BeverageDetailsModal: FC<Props> = ({
           borderBottomColor="tertiary.600"
         >
           <Text ml={5} fontSize="2xl" fontWeight="bold" color="tertiary.600">
-            {data?.title || 'Coffee details'}
+            {data?.title || t('home:beverageDetails:title')}
           </Text>
 
           <Button variant="link" onPress={handleClose}>
@@ -89,7 +91,7 @@ export const BeverageDetailsModal: FC<Props> = ({
                   color="tertiary.600"
                   textDecorationLine="underline"
                 >
-                  Description:
+                  {t('home:beverageDetails:description')}
                 </Text>
 
                 <TouchableOpacity onPress={toggleFavorite}>

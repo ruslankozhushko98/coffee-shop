@@ -3,6 +3,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import DateTimePicker, {
   DateTimePickerEvent,
 } from '@react-native-community/datetimepicker';
+import { useTranslation } from 'react-i18next';
 import { Button, Select, Text } from 'native-base';
 import { useFormikContext } from 'formik';
 import dayjs from 'dayjs';
@@ -17,6 +18,7 @@ import { AuthLayout } from 'modules/auth/components/layout/AuthLayout';
 import { styles } from './styles';
 
 export const SignUpFields: FC = () => {
+  const { t } = useTranslation();
   const isKeyboardOpened = useKeyboardOpened();
   const {
     handleSubmit,
@@ -37,48 +39,48 @@ export const SignUpFields: FC = () => {
       <AuthLayout>
         <TextField
           name="email"
-          label="Email"
+          label={t('fields:email:label')}
           variant="underlined"
-          placeholder="Enter your email"
+          placeholder={t('fields:email:placeholder')}
           errorVisible={!isKeyboardOpened}
         />
 
         <TextField
           name="password"
-          label="Password"
+          label={t('fields:password:label')}
           labelProps={{ pt: 3 }}
           variant="underlined"
-          placeholder="Enter your password"
+          placeholder={t('fields:password:placeholder')}
           type="password"
           errorVisible={!isKeyboardOpened}
         />
 
         <TextField
           name="firstName"
-          label="First name"
+          label={t('fields:firstName:label')}
           labelProps={{ pt: 3 }}
           variant="underlined"
-          placeholder="Enter your first name"
+          placeholder={t('fields:firstName:placeholder')}
           type="text"
           errorVisible={!isKeyboardOpened}
         />
 
         <TextField
           name="lastName"
-          label="Last name"
+          label={t('fields:lastName:label')}
           labelProps={{ pt: 3 }}
           variant="underlined"
-          placeholder="Enter your last name"
+          placeholder={t('fields:lastName:placeholder')}
           type="text"
           errorVisible={!isKeyboardOpened}
         />
 
         <SelectField
           name="gender"
-          label="Gender"
+          label={t('fields:gender:label')}
           labelProps={{ pt: 3 }}
           variant="underlined"
-          placeholder="Choose your gender"
+          placeholder={t('fields:gender:placeholder')}
           errorVisible={!isKeyboardOpened}
         >
           <Select.Item label={GENDER.MALE} value={GENDER.MALE} />
@@ -87,7 +89,7 @@ export const SignUpFields: FC = () => {
         </SelectField>
 
         <FormControlWrapper
-          label="Date of birth"
+          label={t('fields:dob:label')}
           labelProps={{ pt: 3 }}
           errorMessage={errors.dob}
           errorVisible={!isKeyboardOpened}
@@ -109,7 +111,7 @@ export const SignUpFields: FC = () => {
           isLoading={isSubmitting}
         >
           <Text fontSize="md" fontWeight="bold" color="blueGray.200">
-            Sign up
+            {t('links:signUp')}
           </Text>
         </Button>
       </AuthLayout>

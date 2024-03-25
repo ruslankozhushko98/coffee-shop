@@ -3,6 +3,7 @@ import { StyleSheet, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Text } from 'native-base';
+import { t } from 'i18next';
 
 import { normalize } from 'libs/utils/helpers';
 
@@ -18,7 +19,7 @@ type Props = {
   title?: string;
 };
 
-export const BackLink: FC<Props> = ({ title = 'Back' }) => {
+export const BackLink: FC<Props> = ({ title = t('links:back') }) => {
   const { goBack } = useNavigation();
 
   return (

@@ -1,0 +1,110 @@
+{
+  "links": {
+    "back": "Назад",
+    "signIn": "Войти",
+    "signUp": "Зарег.",
+    "search": "Поиск",
+    "forgotPassword": "Забыли пароль",
+    "send": "Отправить"
+  },
+  "header": {
+    "title": "Привет, {{name}}!"
+  },
+  "fields": {
+    "email": {
+      "label": "Email",
+      "placeholder": "Введите ваш email",
+      "requiredMessage": "Email обязателен!",
+      "invalidMessage": "Email невалиден!"
+    },
+    "password": {
+      "label": "Пароль",
+      "placeholder": "Введите ваш пароль",
+      "requiredMessage": "Пароль обязателен!",
+      "minLengthMessage": "Пароль должен содержать 6 символов минимум!"
+    },
+    "newPassword": {
+      "label": "Новый пароль",
+      "placeholder": "Введите новый пароль",
+      "invalidMessage": "Пароль должен содержать:\n1. Большие буквы;\n2. Маленькие буквы;\n3. Особые символы;\n4. Цифры;\n5. Длина минимум 8 символов;"
+    },
+    "confirmPassword": {
+      "label": "Подтвердить пароль",
+      "doesntMatchMessage": "Пароль не соответствует!",
+      "requiredMessage": "Вы должны подтвердить пароль!"
+    },
+    "code": {
+      "label": "Код",
+      "placeholder": "Введите одноразовый код",
+      "requiredMessage": "Код обязателен!"
+    },
+    "firstName": {
+      "label": "Имя",
+      "placeholder": "Введите ваше имя",
+      "requiredMessage": "Имя обязательно!"
+    },
+    "lastName": {
+      "label": "Фамилия",
+      "placeholder": "Введите вашу фамилию",
+      "requiredMessage": "Фамилия обязательна!"
+    },
+    "dob": {
+      "label": "Дата рождения",
+      "requiredMessage": "Дата рождения обязательна!"
+    },
+    "gender": {
+      "label": "Пол",
+      "placeholder": "Выберите ваш пол"
+    }
+  },
+  "auth": {
+    "signInScreen": {
+      "header": {
+        "title": "Войдите за звёздами!",
+        "signUpLink": "Регистрация"
+      }
+    },
+    "signUpScreen": {
+      "header": {
+        "title": "Зарег. за звёздами!"
+      }
+    },
+    "welcome": "Добро пожаловать!"
+  },
+  "forgotPassword": {
+    "header": {
+      "title": "Забыли пароль"
+    },
+    "enterEmailScreen": {
+      "title": "Введите ваш email, чтобы мы могли отправить проверочный код!"
+    },
+    "accountVerificationScreen": {
+      "title": "Проверочный код был отправлен на ваш email"
+    },
+    "newPasswordScreen": {
+      "title": "Теперь вы можете создать новый пароль!",
+      "newPasswordBtn": "Создать новый пароль"
+    }
+  },
+  "accountActivationScreen": {
+    "title": "Код активации был отправлен на ваш email!"
+  },
+  "home": {
+    "menu": "Меню",
+    "noBeverageMessage": "Напитков не найдено!",
+    "beverageDetails": {
+      "title": "Детали кофе",
+      "description": "Описание:"
+    }
+  },
+  "profile": {
+    "signInToSee": "Войдите, чтобы увидеть детали своего аккаунта!",
+    "goTo": "Перейти к ",
+    "signInLink": "Авторизации"
+  },
+  "bottomTabs": {
+    "home": "Главная",
+    "orders": "Заказы",
+    "profile": "Профиль"
+  }
+}

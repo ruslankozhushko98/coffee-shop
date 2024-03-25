@@ -1,0 +1,109 @@
+{
+  "links": {
+    "back": "Back",
+    "signIn": "Sign in",
+    "signUp": "Sign up",
+    "search": "Search",
+    "forgotPassword": "Forgot password",
+    "send": "Send"
+  },
+  "header": {
+    "title": "Hey {{name}}!"
+  },
+  "fields": {
+    "email": {
+      "label": "Email",
+      "placeholder": "Enter your email",
+      "requiredMessage": "Email is required!",
+      "invalidMessage": "Email is invalid!"
+    },
+    "password": {
+      "label": "Password",
+      "placeholder": "Enter your password",
+      "requiredMessage": "Password is required!",
+      "minLengthMessage": "Password must be at least 6 characters!"
+    },
+    "newPassword": {
+      "label": "New password",
+      "placeholder": "Enter new password",
+      "invalidMessage": "Password must contain:\n1. Upper-case letters;\n2. Lower-case letters;\n3. Special characters;\n4. Numbers;\n5. Length must be at least 8 characters;"
+    },
+    "confirmPassword": {
+      "label": "Confirm password",
+      "doesntMatchMessage": "Password doesn't match!",
+      "requiredMessage": "You must confirm your password!"
+    },
+    "code": {
+      "label": "Code",
+      "placeholder": "Enter one-time code",
+      "requiredMessage": "Code is required!"
+    },
+    "firstName": {
+      "label": "First name",
+      "placeholder": "Enter your first name",
+      "requiredMessage": "First name is required!"
+    },
+    "lastName": {
+      "label": "Last name",
+      "placeholder": "Enter your last name",
+      "requiredMessage": "Last name is required!"
+    },
+    "dob": {
+      "label": "Date of birth",
+      "requiredMessage": "Date of birth is required!"
+    },
+    "gender": {
+      "label": "Gender",
+      "placeholder": "Choose your gender"
+    }
+  },
+  "auth": {
+    "signInScreen": {
+      "header": {
+        "title": "Sign in to get stars!"
+      }
+    },
+    "signUpScreen": {
+      "header": {
+        "title": "Sign up to get stars!"
+      }
+    },
+    "welcome": "Welcome!"
+  },
+  "forgotPassword": {
+    "header": {
+      "title": "Forgot password"
+    },
+    "enterEmailScreen": {
+      "title": "Enter your email so we could send a verification code!"
+    },
+    "accountVerificationScreen": {
+      "title": "Verification code has been sent to your email!"
+    },
+    "newPasswordScreen": {
+      "title": "Now you can create new password!",
+      "newPasswordBtn": "Create new password"
+    }
+  },
+  "accountActivationScreen": {
+    "title": "Activation code has been sent to your email!"
+  },
+  "home": {
+    "menu": "Menu",
+    "noBeverageMessage": "No beverages found!",
+    "beverageDetails": {
+      "title": "Coffee details",
+      "description": "Description:"
+    }
+  },
+  "profile": {
+    "signInToSee": "Sign in to see your account details!",
+    "goTo": "Go to",
+    "signInLink": "Sign in"
+  },
+  "bottomTabs": {
+    "home": "Home",
+    "orders": "Orders",
+    "profile": "Profile"
+  }
+}

@@ -1,5 +1,6 @@
 import React, { FC, useState } from 'react';
 import { ListRenderItem } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { FlatList, Text, View } from 'native-base';
 import { useDebounce } from '@uidotdev/usehooks';
 
@@ -12,6 +13,7 @@ import { BeverageRow } from 'modules/home/components/common/Home/BeverageRow';
 import { BeverageDetailsModal } from 'modules/home/components/common/Home/BeverageDetailsModal';
 
 export const HomeScreen: FC = () => {
+  const { t } = useTranslation();
   const [title, setTitle] = useState<string>('');
   const [selectBeverageId, setSelectBeverageId] = useState<number | null>(null);
   const debounceTitle = useDebounce<string>(title, DEBOUNCE_DELAY);
@@ -28,7 +30,7 @@ export const HomeScreen: FC = () => {
   return (
     <View>
       <Text fontWeight="bold" fontSize="xl" my={2} mx={3.5}>
-        Menu
+        {t('home:menu')}
       </Text>
 
       <SearchBar value={title} onChangeText={setTitle} mx={3.5} />
@@ -48,7 +50,7 @@ export const HomeScreen: FC = () => {
             <Loading backgroundColor="transparent" />
           ) : (
             <Text fontWeight="bold" fontSize="xl" color="tertiary.600">
-              No beverages found!
+              {t('home:noBeverageMessage')}
             </Text>
           )
         }

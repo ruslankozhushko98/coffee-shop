@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Text, View } from 'native-base';
 import { Formik, FormikHelpers } from 'formik';
 
@@ -13,14 +14,15 @@ const initialValues: VerificationCodeInitialValues = {
 };
 
 export const AccountActivationScreen: FC = () => {
+  const { t } = useTranslation();
   const { user } = useGlobalContext();
-  const { mutate } = useActivateAccount();
+  const { mutateAsync } = useActivateAccount();
 
-  const handleSubmit = (
+  const handleSubmit = async (
     values: VerificationCodeInitialValues,
     { setSubmitting }: FormikHelpers<VerificationCodeInitialValues>,
-  ): void => {
-    mutate({
+  ): Promise<void> => {
+    await mutateAsync({
       code: values.code,
       userId: Number(user?.id),
     });
@@ -31,7 +33,7 @@ export const AccountActivationScreen: FC = () => {
   return (
     <View p={4}>
       <Text fontSize="xl" fontWeight="bold" mb={5}>
-        Activation code has been sent to your email!
+        {t('accountActivationScreen:title')}
       </Text>
 
       <Formik

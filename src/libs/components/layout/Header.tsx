@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
 import { BottomTabHeaderProps } from '@react-navigation/bottom-tabs';
 import { Box, Button, Text } from 'native-base';
@@ -7,6 +8,7 @@ import { useGlobalContext } from 'contexts/globalContext';
 import { Screens } from 'libs/utils/constants';
 
 export const Header: FC<BottomTabHeaderProps> = () => {
+  const { t } = useTranslation();
   const { navigate } = useNavigation();
   const { user } = useGlobalContext();
 
@@ -22,13 +24,13 @@ export const Header: FC<BottomTabHeaderProps> = () => {
       backgroundColor="white"
     >
       <Text fontWeight="bold" fontSize="xl" color="tertiary.600">
-        Hey {user?.firstName || 'stranger'}!
+        {t('header:title', { name: user?.firstName || 'stranger' })}
       </Text>
 
       {!user && (
         <Button variant="ghost" onPress={handleGoToSignIn}>
           <Text fontWeight="bold" fontSize="lg" color="blue.600">
-            Sign in
+            {t('links:signIn')}
           </Text>
         </Button>
       )}

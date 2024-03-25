@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Formik } from 'formik';
 
 import { useRequestAccountVerification } from 'hooks/account/useRequestAccountVerification';
@@ -12,6 +13,7 @@ const initialValues = {
 };
 
 export const EnterEmailScreen: FC = () => {
+  const { t } = useTranslation();
   const { mutate } = useRequestAccountVerification();
 
   const handleSubmit = (values: EnterEmailInitialValues): void => {
@@ -19,7 +21,7 @@ export const EnterEmailScreen: FC = () => {
   };
 
   return (
-    <ForgotPasswordWrapper title="Enter your email so we could send a verification code!">
+    <ForgotPasswordWrapper title={t('forgotPassword:enterEmailScreen:title')}>
       <Formik
         initialValues={initialValues}
         validationSchema={enterEmailValidationSchema}

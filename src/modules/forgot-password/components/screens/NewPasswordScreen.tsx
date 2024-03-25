@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Formik, FormikHelpers } from 'formik';
 
@@ -15,7 +16,8 @@ const initialValues: PasswordObj = {
 };
 
 export const NewPasswordScreen: FC = () => {
-  const { mutate } = useResetPassword();
+  const { t } = useTranslation();
+  const { mutateAsync } = useResetPassword();
 
   const handleSubmit = async (
     values: PasswordObj,
@@ -27,7 +29,7 @@ export const NewPasswordScreen: FC = () => {
 
     const userId = await AsyncStorage.getItem(AsyncStorageKeys.userId);
 
-    mutate({
+    await mutateAsync({
       ...values,
       userId: Number(userId),
       resetToken: String(token),
@@ -37,7 +39,7 @@ export const NewPasswordScreen: FC = () => {
   };
 
   return (
-    <ForgotPasswordWrapper title="Now you can create new password!">
+    <ForgotPasswordWrapper title={t('forgotPassword:newPasswordScreen:title')}>
       <Formik
         initialValues={initialValues}
         validationSchema={createPasswordValidationSchema}

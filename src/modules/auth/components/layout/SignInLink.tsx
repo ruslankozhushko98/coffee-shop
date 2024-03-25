@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { useTranslation } from 'react-i18next';
 import { Text } from 'native-base';
 
 import { Screens } from 'libs/utils/constants';
@@ -16,6 +17,7 @@ const styles = StyleSheet.create({
 });
 
 export const SignInLink: FC = () => {
+  const { t } = useTranslation();
   const { navigate } = useNavigation();
 
   const goToSignUp = (): void => navigate(Screens.SIGN_IN_SCREEN);
@@ -25,7 +27,7 @@ export const SignInLink: FC = () => {
       <Icon name="angle-left" color="#059669" size={normalize(24)} />
 
       <Text ml={1.5} fontSize="lg" fontWeight="medium" color="tertiary.600">
-        Sign in
+        {t('links:signIn')}
       </Text>
     </TouchableOpacity>
   );

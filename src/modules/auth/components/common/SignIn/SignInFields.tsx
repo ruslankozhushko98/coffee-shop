@@ -1,6 +1,7 @@
 import React, { FC, useEffect } from 'react';
 import { BiometryTypes } from 'react-native-biometrics';
 import { useNavigation } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 import { Box, Button, Text } from 'native-base';
 import { useFormikContext } from 'formik';
 
@@ -16,6 +17,7 @@ import { AuthLayout } from 'modules/auth/components/layout/AuthLayout';
 import { styles } from './styles';
 
 export const SignInFields: FC = () => {
+  const { t } = useTranslation();
   const { navigate } = useNavigation();
   const isKeyboardOpened = useKeyboardOpened();
   const { handleSubmit, isSubmitting } = useFormikContext<SignInDto>();
@@ -36,18 +38,18 @@ export const SignInFields: FC = () => {
       <Box>
         <TextField
           name="email"
-          label="Email"
+          label={t('fields:email:label')}
           variant="underlined"
-          placeholder="Enter your email"
+          placeholder={t('fields:email:placeholder')}
           errorVisible={!isKeyboardOpened}
         />
 
         <TextField
           name="password"
-          label="Password"
+          label={t('fields:password:label')}
           labelProps={{ pt: isKeyboardOpened ? 1 : 3 }}
           variant="underlined"
-          placeholder="Enter your password"
+          placeholder={t('fields:password:placeholder')}
           type="password"
           errorVisible={!isKeyboardOpened}
         />
@@ -59,7 +61,7 @@ export const SignInFields: FC = () => {
           onPress={goToForgotPassword}
         >
           <Text fontSize="sm" fontWeight="bold" color="tertiary.600" underline>
-            Forgot password
+            {t('links:forgotPassword')}
           </Text>
         </Button>
 
@@ -71,7 +73,7 @@ export const SignInFields: FC = () => {
           isLoading={isSubmitting}
         >
           <Text fontSize="md" fontWeight="bold" color="blueGray.200">
-            Sign in
+            {t('links:signIn')}
           </Text>
         </Button>
 

@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { StyleSheet } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { Box, Text } from 'native-base';
 
 import { useKeyboardOpened } from 'hooks/useKeyboardOpened';
@@ -13,6 +14,7 @@ const styles = StyleSheet.create({
 });
 
 export const Welcome: FC = () => {
+  const { t } = useTranslation();
   const isKeyboardOpened = useKeyboardOpened();
 
   return (
@@ -25,7 +27,7 @@ export const Welcome: FC = () => {
 
       {!isKeyboardOpened && (
         <Text textAlign="center" fontWeight="bold" fontSize="2xl">
-          Welcome!
+          {t('auth:welcome')}
         </Text>
       )}
     </Box>
