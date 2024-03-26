@@ -29,7 +29,12 @@ export const Header: FC<BottomTabHeaderProps> = () => {
 
       {!user && (
         <Button variant="ghost" onPress={handleGoToSignIn}>
-          <Text fontWeight="bold" fontSize="lg" color="blue.600">
+          <Text
+            fontWeight="bold"
+            fontSize="lg"
+            color="blue.600"
+            textDecorationLine="underline"
+          >
             {t('links:signIn')}
           </Text>
         </Button>

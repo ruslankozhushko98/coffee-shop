@@ -83,9 +83,9 @@ export const SignUpFields: FC = () => {
           placeholder={t('fields:gender:placeholder')}
           errorVisible={!isKeyboardOpened}
         >
-          <Select.Item label={GENDER.MALE} value={GENDER.MALE} />
-          <Select.Item label={GENDER.FEMALE} value={GENDER.FEMALE} />
-          <Select.Item label={GENDER.OTHER} value={GENDER.OTHER} />
+          <Select.Item label={t('genders:male')} value={GENDER.MALE} />
+          <Select.Item label={t('genders:female')} value={GENDER.FEMALE} />
+          <Select.Item label={t('genders:other')} value={GENDER.OTHER} />
         </SelectField>
 
         <FormControlWrapper
@@ -94,8 +94,33 @@ export const SignUpFields: FC = () => {
           errorMessage={errors.dob}
           errorVisible={!isKeyboardOpened}
         >
+          {/* <DatePickerContainer>
+            <DatePickerLabel>{t(labelKey)}</DatePickerLabel>
+            <DatePickerButtonContainer>
+              <DatePickerButton
+                onPress={() => setShowDatePicker(!showDatePicker)}
+              >
+                <DatePickerButtonText>
+                  {selectedDate
+                    ? moment(selectedDate).format('L')
+                    : t(datePlaceholderKey)}
+                </DatePickerButtonText>
+                <DatePickerButtonImage source={Calendar} />
+              </DatePickerButton>
+            </DatePickerButtonContainer>
+            {showDatePicker && (
+              <DateTimePicker
+                mode="date"
+                value={dayjs(values.dob).toDate()}
+                onChange={handleChangeDOB}
+                maximumDate={new Date()}
+                style={styles.dateTimePicker}
+              />
+            )}
+          </DatePickerContainer> */}
           <DateTimePicker
             mode="date"
+            display="inline"
             value={dayjs(values.dob).toDate()}
             onChange={handleChangeDOB}
             maximumDate={new Date()}

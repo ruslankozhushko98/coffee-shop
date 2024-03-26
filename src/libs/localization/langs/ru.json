@@ -11,6 +11,11 @@
     "title": "Привет, {{name}}!",
     "guest": "гость"
   },
+  "genders": {
+    "male": "МУЖСКОЙ",
+    "female": "ЖЕНСКИЙ",
+    "other": "ДРУГОЕ"
+  },
   "fields": {
     "email": {
       "label": "Email",

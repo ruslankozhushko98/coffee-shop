@@ -11,6 +11,11 @@
     "title": "Hey {{name}}!",
     "guest": "guest"
   },
+  "genders": {
+    "male": "MALE",
+    "female": "FEMALE",
+    "other": "OTHER"
+  },
   "fields": {
     "email": {
       "label": "Email",
