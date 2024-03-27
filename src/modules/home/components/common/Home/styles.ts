@@ -1,9 +1,6 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-  flexContainer: {
-    flex: 1,
-  },
   // eslint-disable-next-line react-native/no-color-literals
   rowItem: {
     flexDirection: 'row',
@@ -17,7 +14,7 @@ export const styles = StyleSheet.create({
     shadowRadius: 10,
     shadowOpacity: 0.1,
   },
-  coffeeIcon: {
-    alignSelf: 'center',
+  flexContainer: {
+    flex: 1,
   },
 });

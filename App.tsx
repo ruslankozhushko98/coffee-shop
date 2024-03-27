@@ -75,7 +75,7 @@ function App(): React.JSX.Element {
                   name={Screens.ACCOUNT_ACTIVATION}
                   component={AccountActivationScreen}
                   options={{
-                    title: 'Activate your account',
+                    title: t('accountActivationScreen:header:title'),
                   }}
                 />
 

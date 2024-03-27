@@ -5,7 +5,17 @@
     "signUp": "Sign up",
     "search": "Search",
     "forgotPassword": "Forgot password",
-    "send": "Send"
+    "send": "Send",
+    "cancel": "Cancel",
+    "okay": "Okay"
+  },
+  "alerts": {
+    "signIn": {
+      "title": "Sign in to be able to use this feature!"
+    },
+    "availableSoon": {
+      "title": "Available soon"
+    }
   },
   "header": {
     "title": "Hey {{name}}!",
@@ -92,14 +102,18 @@
     }
   },
   "accountActivationScreen": {
-    "title": "Activation code has been sent to your email!"
+    "title": "Activation code has been sent to your email!",
+    "header": {
+      "title": "Activate your account"
+    }
   },
   "home": {
     "menu": "Menu",
     "noBeverageMessage": "No beverages found!",
     "beverageDetails": {
       "title": "Coffee details",
-      "description": "Description:"
+      "description": "Description:",
+      "addToOrderBtn": "Add to order"
     }
   },
   "profile": {

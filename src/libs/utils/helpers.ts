@@ -1,4 +1,5 @@
-import { PixelRatio, Platform } from 'react-native';
+import { Alert, PixelRatio, Platform } from 'react-native';
+import { t } from 'i18next';
 
 import { SCREEN_WIDTH } from './constants';
 
@@ -28,4 +29,13 @@ export function debounce(func: Function, timeout = 300) {
 
 export function formatPrice(price: number): string {
   return `$${Number(price).toFixed(2)}`;
+}
+
+export function showAvailableSoonAlert() {
+  Alert.alert('', t('alerts:availableSoon:title'), [
+    {
+      text: t('links:okay'),
+      style: 'cancel',
+    },
+  ]);
 }

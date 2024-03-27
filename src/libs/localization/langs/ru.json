@@ -5,7 +5,17 @@
     "signUp": "Зарег.",
     "search": "Поиск",
     "forgotPassword": "Забыли пароль",
-    "send": "Отправить"
+    "send": "Отправить",
+    "cancel": "Отмена",
+    "okay": "Окей"
+  },
+  "alerts": {
+    "signIn": {
+      "title": "Залогиньтесь, чтобы использовать эту фичу!"
+    },
+    "availableSoon": {
+      "title": "Скоро будет доступно"
+    }
   },
   "header": {
     "title": "Привет, {{name}}!",
@@ -93,14 +103,18 @@
     }
   },
   "accountActivationScreen": {
-    "title": "Код активации был отправлен на ваш email!"
+    "title": "Код активации был отправлен на ваш email!",
+    "header": {
+      "title": "Активируйте аккаунт"
+    }
   },
   "home": {
     "menu": "Меню",
     "noBeverageMessage": "Напитков не найдено!",
     "beverageDetails": {
       "title": "Детали кофе",
-      "description": "Описание:"
+      "description": "Описание:",
+      "addToOrderBtn": "Добавить в заказ"
     }
   },
   "profile": {

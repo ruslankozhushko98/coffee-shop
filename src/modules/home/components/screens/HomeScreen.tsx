@@ -10,7 +10,7 @@ import { Loading } from 'libs/components/layout/Loading';
 import { BeverageOpts } from 'modules/home/utils/types';
 import { SearchBar } from 'modules/home/components/common/SearchBar';
 import { BeverageRow } from 'modules/home/components/common/Home/BeverageRow';
-import { BeverageDetailsModal } from 'modules/home/components/common/Home/BeverageDetailsModal';
+import { BeverageDetailsModal } from 'modules/home/components/common/Home/BeverageDetailsModal/BeverageDetailsModal';
 
 export const HomeScreen: FC = () => {
   const { t } = useTranslation();
