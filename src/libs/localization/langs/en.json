@@ -3,11 +3,13 @@
     "back": "Back",
     "signIn": "Sign in",
     "signUp": "Sign up",
+    "signOut": "Sign out",
     "search": "Search",
     "forgotPassword": "Forgot password",
     "send": "Send",
     "cancel": "Cancel",
-    "okay": "Okay"
+    "okay": "Okay",
+    "edit": "Edit"
   },
   "alerts": {
     "signIn": {
@@ -119,7 +121,9 @@
   "profile": {
     "signInToSee": "Sign in to see your account details!",
     "goTo": "Go to",
-    "signInLink": "Sign in"
+    "signInLink": "Sign in",
+    "title": "Profile info",
+    "profileEditedMessage": "Profile edited successfully!"
   },
   "bottomTabs": {
     "home": "Home",

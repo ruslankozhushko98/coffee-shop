@@ -4,7 +4,7 @@ export const PHONE_REGEX = /^\(\d{3}\) \d{3}-\d{4}$/;
 export const PASSWORD_REGEX =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
-export const DATE_FORMAT = 'mm/dd/yyyy';
+export const DATE_FORMAT = 'mmm dd yyyy';
 
 export const SCREEN_WIDTH = Dimensions.get('screen').width;
 export const SCREEN_HEIGHT = Dimensions.get('screen').height;
@@ -42,6 +42,7 @@ export enum Mutations {
   REQUEST_ACCOUNT_VERIFICATION = 'REQUEST_ACCOUNT_VERIFICATION',
   RESET_PASSWORD = 'RESET_PASSWORD',
   TOGGLE_BEVERAGE_FAVORITE = 'TOGGLE_BEVERAGE_FAVORITE',
+  EDIT_PROFILE = 'EDIT_PROFILE',
 }
 
 export enum AsyncStorageKeys {

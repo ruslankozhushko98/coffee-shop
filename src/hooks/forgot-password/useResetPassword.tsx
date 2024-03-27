@@ -1,15 +1,23 @@
 import React from 'react';
 import { Text, useToast } from 'native-base';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { AsyncStorageKeys, Mutations, Screens } from 'libs/utils/constants';
+import { useGlobalContext } from 'contexts/globalContext';
+import {
+  AsyncStorageKeys,
+  Mutations,
+  Queries,
+  Screens,
+} from 'libs/utils/constants';
 import { forgotPasswordService } from 'modules/forgot-password/services';
 
 export const useResetPassword = () => {
   const { navigate } = useNavigation();
   const toast = useToast();
+  const queryClient = useQueryClient();
+  const { user } = useGlobalContext();
 
   return useMutation({
     mutationKey: [Mutations.RESET_PASSWORD],
@@ -28,6 +36,12 @@ export const useResetPassword = () => {
           backgroundColor: 'green',
         },
       });
+
+      if (user) {
+        await queryClient.invalidateQueries({
+          queryKey: [Queries.FETCH_ME],
+        });
+      }
 
       navigate(Screens.SIGN_IN_SCREEN);
     },
