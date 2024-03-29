@@ -115,8 +115,13 @@
     "noBeverageMessage": "Напитков не найдено!",
     "noFavoriteBeverageMessage": "Избранных напитков не найдено!",
     "beveragesTabs": {
-      "all": "Все",
-      "favorites": "Избранные"
+      "all": {
+        "title": "Все"
+      },
+      "favorites": {
+        "title": "Избранные",
+        "unauthMessage": ", чтобы увидеть ваши избранные напитки!"
+      }
     },
     "beverageDetails": {
       "title": "Детали кофе",

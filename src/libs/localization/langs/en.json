@@ -114,8 +114,13 @@
     "noBeverageMessage": "No beverages found!",
     "noFavoriteBeverageMessage": "No favorite beverages found!",
     "beveragesTabs": {
-      "all": "All",
-      "favorites": "Favorites"
+      "all": {
+        "title": "All"
+      },
+      "favorites": {
+        "title": "Favorites",
+        "unauthMessage": "to see your favorite beverages!"
+      }
     },
     "beverageDetails": {
       "title": "Coffee details",

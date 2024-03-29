@@ -58,8 +58,14 @@ export const HomeScreen: FC = () => {
         navigationState={{
           index,
           routes: [
-            { key: 'all', title: t('home:beveragesTabs:all') },
-            { key: 'favorites', title: t('home:beveragesTabs:favorites') },
+            {
+              key: BEVERAGES_LIST_TABS.ALL,
+              title: t('home:beveragesTabs:all:title'),
+            },
+            {
+              key: BEVERAGES_LIST_TABS.FAVORITES,
+              title: t('home:beveragesTabs:favorites:title'),
+            },
           ],
         }}
         renderLazyPlaceholder={renderLazyPlaceholder}
