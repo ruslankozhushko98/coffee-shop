@@ -2,6 +2,7 @@ import { httpClient } from 'libs/config/httpClient';
 import { Beverage } from 'modules/home/models';
 import {
   BeverageOpts,
+  FavoriteBeverageOpts,
   ToggleBeverageFavoriteDto,
 } from 'modules/home/utils/types';
 
@@ -24,6 +25,11 @@ class MenuService {
 
   public async fetchBeverages(title?: string): Promise<Array<BeverageOpts>> {
     const { data } = await httpClient.get('/menu/all', { params: { title } });
+    return data;
+  }
+
+  public async fetchFavoriteBeverages(): Promise<Array<FavoriteBeverageOpts>> {
+    const { data } = await httpClient.get('/menu/favorites');
     return data;
   }
 

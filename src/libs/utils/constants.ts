@@ -19,6 +19,9 @@ export enum Screens {
 
   HOME_STACK = 'HOME_STACK',
   HOME_SCREEN = 'HOME_SCREEN',
+  MENU_TABS_STACK = 'MENU_TABS_STACK',
+  MENU_ALL_TAB = 'MENU_ALL_TAB',
+  MENU_FAVORITE_TAB = 'MENU_FAVORITE_TAB',
   HOME_ORDERS_SCREEN = 'ORDERS_SCREEN',
   HOME_PROFILE_SCREEN = 'PROFILE_SCREEN',
 
@@ -31,6 +34,7 @@ export enum Screens {
 export enum Queries {
   FETCH_ME = 'FETCH_ME',
   FETCH_BEVERAGES = 'FETCH_BEVERAGES',
+  FETCH_FAVORITES_BEVERAGES = 'FETCH_FAVORITES_BEVERAGES',
   FETCH_BEVERAGE_BY_ID = 'FETCH_BEVERAGE_BY_ID',
 }
 
@@ -51,4 +55,9 @@ export enum AsyncStorageKeys {
   userId = 'user_id',
   biometryType = 'biometry_type',
   lang = 'lang',
+}
+
+export enum BEVERAGES_LIST_TABS {
+  ALL = 'all',
+  FAVORITES = 'favorites',
 }

@@ -1,61 +1,77 @@
+/* eslint-disable indent */
 import React, { FC, useState } from 'react';
-import { ListRenderItem } from 'react-native';
+import { useWindowDimensions } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { FlatList, Text, View } from 'native-base';
-import { useDebounce } from '@uidotdev/usehooks';
+import { TabView, TabBar } from 'react-native-tab-view';
+import { Text, View } from 'native-base';
 
-import { useFetchBeverages } from 'hooks/home/useFetchBeverages';
-import { DEBOUNCE_DELAY } from 'libs/utils/constants';
+import { BEVERAGES_LIST_TABS } from 'libs/utils/constants';
 import { Loading } from 'libs/components/layout/Loading';
-import { BeverageOpts } from 'modules/home/utils/types';
-import { SearchBar } from 'modules/home/components/common/SearchBar';
-import { BeverageRow } from 'modules/home/components/common/Home/BeverageRow';
+import { AllBeveragesList } from 'modules/home/components/common/Home/AllBeveragesList';
+import { FavoriteBeveragesList } from 'modules/home/components/common/Home/FavoriteBeveragesList';
 import { BeverageDetailsModal } from 'modules/home/components/common/Home/BeverageDetailsModal/BeverageDetailsModal';
+
+import { styles } from './styles';
 
 export const HomeScreen: FC = () => {
   const { t } = useTranslation();
-  const [title, setTitle] = useState<string>('');
+  const layout = useWindowDimensions();
   const [selectBeverageId, setSelectBeverageId] = useState<number | null>(null);
-  const debounceTitle = useDebounce<string>(title, DEBOUNCE_DELAY);
-  const { isLoading, data } = useFetchBeverages(debounceTitle);
+  const [index, setIndex] = useState<number>(0);
 
-  const renderItem: ListRenderItem<BeverageOpts> = ({ item, index }) => {
-    const handleSelectItem = (): void => setSelectBeverageId(item.id);
-
-    return (
-      <BeverageRow key={index} {...item} onSelectItem={handleSelectItem} />
-    );
+  const renderScene = ({ route }) => {
+    switch (route.key) {
+      case BEVERAGES_LIST_TABS.ALL:
+        return <AllBeveragesList setSelectBeverageId={setSelectBeverageId} />;
+      case BEVERAGES_LIST_TABS.FAVORITES:
+        return (
+          <FavoriteBeveragesList setSelectBeverageId={setSelectBeverageId} />
+        );
+      default:
+        return null;
+    }
   };
 
-  return (
-    <View>
-      <Text fontWeight="bold" fontSize="xl" my={2} mx={3.5}>
-        {t('home:menu')}
-      </Text>
+  const renderLazyPlaceholder = (): JSX.Element => (
+    <Loading backgroundColor="transparent" />
+  );
 
-      <SearchBar value={title} onChangeText={setTitle} mx={3.5} />
+  const renderTabBar = props => (
+    <TabBar
+      {...props}
+      indicatorStyle={styles.tabBarIndicatorStyle}
+      tabStyle={styles.tabBarStyle}
+      labelStyle={styles.tabBarLabelStyle}
+    />
+  );
+
+  return (
+    <View flex={1}>
+      <View backgroundColor="white">
+        <Text fontWeight="bold" fontSize="xl" my={2} mx={3.5}>
+          {t('home:menu')}
+        </Text>
+      </View>
+
+      <TabView
+        lazy
+        navigationState={{
+          index,
+          routes: [
+            { key: 'all', title: t('home:beveragesTabs:all') },
+            { key: 'favorites', title: t('home:beveragesTabs:favorites') },
+          ],
+        }}
+        renderLazyPlaceholder={renderLazyPlaceholder}
+        onIndexChange={setIndex}
+        renderScene={renderScene}
+        initialLayout={{ width: layout.width, height: layout.height }}
+        renderTabBar={renderTabBar}
+      />
 
       <BeverageDetailsModal
         beverageId={selectBeverageId}
         setBeverageId={setSelectBeverageId}
-      />
-
-      <FlatList
-        px={3.5}
-        pt={6}
-        h="full"
-        data={data}
-        ListEmptyComponent={
-          isLoading ? (
-            <Loading backgroundColor="transparent" />
-          ) : (
-            <Text fontWeight="bold" fontSize="xl" color="tertiary.600">
-              {t('home:noBeverageMessage')}
-            </Text>
-          )
-        }
-        refreshing={isLoading}
-        renderItem={renderItem}
       />
     </View>
   );

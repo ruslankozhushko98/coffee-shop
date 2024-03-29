@@ -113,6 +113,11 @@
   "home": {
     "menu": "Меню",
     "noBeverageMessage": "Напитков не найдено!",
+    "noFavoriteBeverageMessage": "Избранных напитков не найдено!",
+    "beveragesTabs": {
+      "all": "Все",
+      "favorites": "Избранные"
+    },
     "beverageDetails": {
       "title": "Детали кофе",
       "description": "Описание:",

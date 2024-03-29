@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Text, View } from 'native-base';
 import { Formik, FormikHelpers } from 'formik';
 
-import { useEditProfile } from 'hooks/home/profile/useEditProfile';
+import { useEditProfile } from 'hooks/profile/useEditProfile';
 import { useGlobalContext } from 'contexts/globalContext';
 import { Queries } from 'libs/utils/constants';
 import { EditProfileValues } from 'modules/home/utils/types';

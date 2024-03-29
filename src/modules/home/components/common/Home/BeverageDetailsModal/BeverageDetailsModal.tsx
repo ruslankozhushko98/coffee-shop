@@ -1,18 +1,19 @@
 import React, { FC } from 'react';
 import { Alert, Modal, SafeAreaView } from 'react-native';
+import { useQueryClient } from '@tanstack/react-query';
 import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 
 import { useGlobalContext } from 'contexts/globalContext';
 import { useFetchBeverageById } from 'hooks/home/useFetchBeverageById';
 import { useToggleBeverageFavorite } from 'hooks/home/useToggleBeverageFavorite';
-import { Screens } from 'libs/utils/constants';
+import { Queries, Screens } from 'libs/utils/constants';
 import { showAvailableSoonAlert } from 'libs/utils/helpers';
 import { Loading } from 'libs/components/layout/Loading';
 import { BeverageDetailsModalHeader } from './BeverageDetailsModalHeader';
 import { BeverageDetailsModalBody } from './BeverageDetailsModalBody';
 
-import { styles } from '../styles';
+import { styles } from './styles';
 
 type Props = {
   beverageId: number | null;
@@ -26,6 +27,7 @@ export const BeverageDetailsModal: FC<Props> = ({
   const { t } = useTranslation();
   const { navigate } = useNavigation();
   const { user } = useGlobalContext();
+  const queryClient = useQueryClient();
   const { isLoading, data, refetch, isRefetching } =
     useFetchBeverageById(beverageId);
   const { mutateAsync, isPending } = useToggleBeverageFavorite();
@@ -55,7 +57,11 @@ export const BeverageDetailsModal: FC<Props> = ({
         userId: Number(user?.id),
       });
 
-      refetch();
+      await refetch();
+
+      await queryClient.invalidateQueries({
+        queryKey: [Queries.FETCH_FAVORITES_BEVERAGES],
+      });
     } else {
       showSignInAlert();
     }

@@ -112,6 +112,11 @@
   "home": {
     "menu": "Menu",
     "noBeverageMessage": "No beverages found!",
+    "noFavoriteBeverageMessage": "No favorite beverages found!",
+    "beveragesTabs": {
+      "all": "All",
+      "favorites": "Favorites"
+    },
     "beverageDetails": {
       "title": "Coffee details",
       "description": "Description:",
