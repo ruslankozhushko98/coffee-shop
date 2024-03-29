@@ -1,15 +1,15 @@
 import React, { FC } from 'react';
 import { ListRenderItem, RefreshControl, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import { FlatList, Text, View } from 'native-base';
 
 import { useFetchFavoriteBeverages } from 'hooks/home/useFetchFavoriteBeverages';
 import { useGlobalContext } from 'contexts/globalContext';
+import { Screens } from 'libs/utils/constants';
 import { Loading } from 'libs/components/layout/Loading';
 import { BeverageOpts } from 'modules/home/utils/types';
 import { BeverageRow } from './BeverageRow';
-import { useNavigation } from '@react-navigation/native';
-import { Screens } from 'libs/utils/constants';
 
 type Props = {
   setSelectBeverageId: (beverageId: number | null) => void;
