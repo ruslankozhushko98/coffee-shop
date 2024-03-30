@@ -73,6 +73,9 @@
     "gender": {
       "label": "Gender",
       "placeholder": "Choose your gender"
+    },
+    "language": {
+      "label": "Language"
     }
   },
   "auth": {
@@ -129,7 +132,7 @@
     }
   },
   "profile": {
-    "signInToSee": "to see your account details!",
+    "signInToSee": "to see your profile details!",
     "title": "Profile",
     "profileEditedMessage": "Profile edited successfully!"
   },

@@ -38,7 +38,7 @@ export const ProfileScreen: FC = () => {
 
   return (
     <HomeLayout>
-      <FormControlWrapper label="Language">
+      <FormControlWrapper label={t('fields:language:label')}>
         <Select
           variant="underlined"
           defaultValue={i18n.language}
