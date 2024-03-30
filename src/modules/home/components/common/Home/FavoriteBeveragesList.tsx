@@ -7,9 +7,9 @@ import { useFetchFavoriteBeverages } from 'hooks/home/useFetchFavoriteBeverages'
 import { useGlobalContext } from 'contexts/globalContext';
 import { Loading } from 'libs/components/layout/Loading';
 import { BeverageOpts } from 'modules/home/utils/types';
+import { HomeLayout } from 'modules/home/components/layout/HomeLayout';
 import { SignInToSee } from 'modules/home/components/common/Profile/SignInToSee';
 import { BeverageRow } from './BeverageRow';
-import { HomeLayout } from '../../layout/HomeLayout';
 
 type Props = {
   setSelectBeverageId: (beverageId: number | null) => void;
