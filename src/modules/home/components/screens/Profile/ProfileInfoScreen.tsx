@@ -10,9 +10,10 @@ import { Queries } from 'libs/utils/constants';
 import { EditProfileValues } from 'modules/home/utils/types';
 import { editProfileValidationSchema } from 'modules/home/utils/validation';
 import { GENDER } from 'modules/auth/utils/constants';
-import { ProfileInfoForm } from './ProfileInfoForm';
+import { ProfileInfoForm } from 'modules/home/components/common/Profile/ProfileInfo/ProfileInfoForm';
+import { HomeLayout } from 'modules/home/components/layout/HomeLayout';
 
-export const ProfileInfo: FC = () => {
+export const ProfileInfoScreen: FC = () => {
   const { t } = useTranslation();
   const { user } = useGlobalContext();
   const queryClient = useQueryClient();
@@ -35,7 +36,7 @@ export const ProfileInfo: FC = () => {
   };
 
   return (
-    <View flex={1}>
+    <HomeLayout>
       <View borderBottomWidth="2" mb="4">
         <Text fontWeight="bold" fontSize="2xl">
           {t('profile:title')}
@@ -54,6 +55,6 @@ export const ProfileInfo: FC = () => {
       >
         <ProfileInfoForm />
       </Formik>
-    </View>
+    </HomeLayout>
   );
 };

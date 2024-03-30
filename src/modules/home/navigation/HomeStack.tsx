@@ -6,14 +6,14 @@ import { useTranslation } from 'react-i18next';
 import { Text } from 'native-base';
 
 import { useFetchMe } from 'hooks/auth/useFetchMe';
+import { useGlobalContext } from 'contexts/globalContext';
 import { Screens } from 'libs/utils/constants';
 import { normalize } from 'libs/utils/helpers';
 import { Loading } from 'libs/components/layout/Loading';
 import { Header } from 'libs/components/layout/Header';
 import { HomeScreen } from 'modules/home/components/screens/HomeScreen';
 import { OrdersScreen } from 'modules/home/components/screens/OrdersScreen';
-import { ProfileScreen } from 'modules/home/components/screens/ProfileScreen';
-import { useGlobalContext } from 'contexts/globalContext';
+import { ProfileStack } from './ProfileStack';
 
 type TabBarOptions = { [key: string]: any };
 
@@ -65,7 +65,7 @@ export const HomeStack: FC = () => {
         />
 
         <Tab.Screen
-          name={Screens.HOME_ORDERS_SCREEN}
+          name={Screens.ORDERS_SCREEN}
           component={OrdersScreen}
           options={{
             tabBarIcon: renderTabBarIcon('receipt'),
@@ -74,8 +74,8 @@ export const HomeStack: FC = () => {
         />
 
         <Tab.Screen
-          name={Screens.HOME_PROFILE_SCREEN}
-          component={ProfileScreen}
+          name={Screens.PROFILE_STACK}
+          component={ProfileStack}
           options={{
             tabBarIcon: renderTabBarIcon('account-circle'),
             tabBarLabel: renderTabBarLabel(t('bottomTabs:profile')),

@@ -132,8 +132,11 @@
     "signInToSee": "Sign in to see your account details!",
     "goTo": "Go to",
     "signInLink": "Sign in",
-    "title": "Profile info",
+    "title": "Profile",
     "profileEditedMessage": "Profile edited successfully!"
+  },
+  "profileInfo": {
+    "title": "Profile info"
   },
   "bottomTabs": {
     "home": "Home",
