@@ -21,7 +21,7 @@ export const SignInToSee: FC<Props> = ({
 
   return (
     <View flexDirection="row">
-      <Text fontWeight="bold" fontSize="xl" ml={2} flex={1} flexWrap="wrap">
+      <Text fontWeight="bold" fontSize="xl" flex={1} flexWrap="wrap">
         <TouchableOpacity onPress={handleGoToSignIn}>
           <Text
             fontSize="xl"

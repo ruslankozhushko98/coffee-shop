@@ -122,7 +122,7 @@
       },
       "favorites": {
         "title": "Favorites",
-        "unauthMessage": "to see your favorite beverages!"
+        "unauthMessage": " to see your favorite beverages!"
       }
     },
     "beverageDetails": {
@@ -132,7 +132,7 @@
     }
   },
   "profile": {
-    "signInToSee": "to see your profile details!",
+    "signInToSee": " to see your profile details!",
     "title": "Profile",
     "profileEditedMessage": "Profile edited successfully!"
   },
