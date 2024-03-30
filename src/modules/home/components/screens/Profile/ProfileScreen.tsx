@@ -63,7 +63,9 @@ export const ProfileScreen: FC = () => {
           {!isKeyboardOpened && <ProfileBottomButtons />}
         </View>
       ) : (
-        <SignInToSee />
+        <View pt={6}>
+          <SignInToSee message={t('profile:signInToSee')} />
+        </View>
       )}
     </HomeLayout>
   );

@@ -129,9 +129,7 @@
     }
   },
   "profile": {
-    "signInToSee": "Sign in to see your account details!",
-    "goTo": "Go to",
-    "signInLink": "Sign in",
+    "signInToSee": "to see your account details!",
     "title": "Profile",
     "profileEditedMessage": "Profile edited successfully!"
   },
@@ -142,5 +140,8 @@
     "home": "Home",
     "orders": "Orders",
     "profile": "Profile"
+  },
+  "messages": {
+    "functionality": "to get this functionality!"
   }
 }

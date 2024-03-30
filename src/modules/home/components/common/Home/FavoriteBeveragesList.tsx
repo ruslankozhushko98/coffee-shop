@@ -1,15 +1,15 @@
 import React, { FC } from 'react';
-import { ListRenderItem, RefreshControl, TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { ListRenderItem, RefreshControl } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { FlatList, Text, View } from 'native-base';
+import { FlatList, Text } from 'native-base';
 
 import { useFetchFavoriteBeverages } from 'hooks/home/useFetchFavoriteBeverages';
 import { useGlobalContext } from 'contexts/globalContext';
-import { Screens } from 'libs/utils/constants';
 import { Loading } from 'libs/components/layout/Loading';
 import { BeverageOpts } from 'modules/home/utils/types';
+import { SignInToSee } from 'modules/home/components/common/Profile/SignInToSee';
 import { BeverageRow } from './BeverageRow';
+import { HomeLayout } from '../../layout/HomeLayout';
 
 type Props = {
   setSelectBeverageId: (beverageId: number | null) => void;
@@ -17,31 +17,17 @@ type Props = {
 
 export const FavoriteBeveragesList: FC<Props> = ({ setSelectBeverageId }) => {
   const { t } = useTranslation();
-  const { navigate } = useNavigation();
   const { data, isLoading, refetch, isRefetching } =
     useFetchFavoriteBeverages();
   const { user } = useGlobalContext();
 
   if (!user) {
-    const handleGoToSignIn = (): void => navigate(Screens.SIGN_IN_SCREEN);
-
     return (
-      <View px={3.5} pt={6} flexDirection="row">
-        <TouchableOpacity onPress={handleGoToSignIn}>
-          <Text
-            fontSize="xl"
-            fontWeight="bold"
-            color="blue.600"
-            textDecorationLine="underline"
-          >
-            {t('links:signIn')}
-          </Text>
-        </TouchableOpacity>
-
-        <Text fontWeight="bold" fontSize="xl" ml={2}>
-          {t('home:beveragesTabs:favorites:unauthMessage')}
-        </Text>
-      </View>
+      <HomeLayout>
+        <SignInToSee
+          message={t('home:beveragesTabs:favorites:unauthMessage')}
+        />
+      </HomeLayout>
     );
   }
 
