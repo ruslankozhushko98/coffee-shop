@@ -40,6 +40,7 @@ export const HomeScreen: FC = () => {
     <TabBar
       {...props}
       indicatorStyle={styles.tabBarIndicatorStyle}
+      inactiveColor="#000"
       tabStyle={styles.tabBarStyle}
       labelStyle={styles.tabBarLabelStyle}
     />
