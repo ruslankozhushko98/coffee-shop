@@ -13,6 +13,7 @@ import { Header } from 'libs/components/layout/Header';
 import { HomeScreen } from 'modules/home/components/screens/HomeScreen';
 import { OrdersScreen } from 'modules/home/components/screens/OrdersScreen';
 import { ProfileScreen } from 'modules/home/components/screens/ProfileScreen';
+import { useGlobalContext } from 'contexts/globalContext';
 
 type TabBarOptions = { [key: string]: any };
 
@@ -41,10 +42,11 @@ const renderTabBarLabel =
 export const HomeStack: FC = () => {
   const { t } = useTranslation();
   const { isLoading } = useFetchMe();
+  const { isLanguageChanging } = useGlobalContext();
 
   return (
     <>
-      {isLoading && <Loading backgroundColor="white" />}
+      {(isLoading || isLanguageChanging) && <Loading backgroundColor="white" />}
 
       <Tab.Navigator
         initialRouteName={Screens.HOME_SCREEN}

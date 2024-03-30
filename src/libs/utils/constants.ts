@@ -61,3 +61,8 @@ export enum BEVERAGES_LIST_TABS {
   ALL = 'all',
   FAVORITES = 'favorites',
 }
+
+export enum LANGS {
+  EN = 'en',
+  RU = 'ru',
+}

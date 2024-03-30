@@ -2,20 +2,22 @@ import React, { FC } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTranslation } from 'react-i18next';
-import { Button, Text, View } from 'native-base';
+import { Button, Select, Text, View } from 'native-base';
 
 import { useKeyboardOpened } from 'hooks/useKeyboardOpened';
 import { useGlobalContext } from 'contexts/globalContext';
 import { AsyncStorageKeys, Screens } from 'libs/utils/constants';
+import { languages } from 'libs/localization/i18n';
+import { FormControlWrapper } from 'libs/components/layout/FormControlWrapper';
 import { HomeLayout } from 'modules/home/components/layout/HomeLayout';
 import { SignInToSee } from 'modules/home/components/common/Profile/SignInToSee';
 import { ProfileInfo } from 'modules/home/components/common/Profile/ProfileInfo/ProfileInfo';
 
 export const ProfileScreen: FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const isKeyboardOpened = useKeyboardOpened();
   const { navigate } = useNavigation();
-  const { user, setUser } = useGlobalContext();
+  const { user, setUser, setIsLanguageChanging } = useGlobalContext();
 
   const handleSignOut = async (): Promise<void> => {
     await AsyncStorage.removeItem(AsyncStorageKeys.accessToken);
@@ -26,8 +28,29 @@ export const ProfileScreen: FC = () => {
   const handleGoToForgotPassword = (): void =>
     navigate(Screens.FORGOT_PASSWORD_STACK);
 
+  const handleChangeLanguage = async (lang: string): Promise<void> => {
+    setIsLanguageChanging(true);
+
+    await i18n.changeLanguage(lang);
+    await AsyncStorage.setItem(AsyncStorageKeys.lang, lang);
+
+    setIsLanguageChanging(false);
+  };
+
   return (
     <HomeLayout>
+      <FormControlWrapper label="Language">
+        <Select
+          variant="underlined"
+          defaultValue={i18n.language}
+          onValueChange={handleChangeLanguage}
+        >
+          {languages.map((item, index) => (
+            <Select.Item key={index} label={item.toUpperCase()} value={item} />
+          ))}
+        </Select>
+      </FormControlWrapper>
+
       {user ? (
         <View flex={1} justifyContent="space-between" pb="12">
           <ProfileInfo />
