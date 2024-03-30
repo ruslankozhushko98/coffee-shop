@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useTranslation } from 'react-i18next';
-import { Button, Select, Text, View } from 'native-base';
+import { Select, Text, View } from 'native-base';
 
 import { useKeyboardOpened } from 'hooks/useKeyboardOpened';
 import { useGlobalContext } from 'contexts/globalContext';
@@ -14,6 +14,7 @@ import { languages } from 'libs/localization/i18n';
 import { FormControlWrapper } from 'libs/components/layout/FormControlWrapper';
 import { HomeLayout } from 'modules/home/components/layout/HomeLayout';
 import { SignInToSee } from 'modules/home/components/common/Profile/SignInToSee';
+import { ProfileBottomButtons } from 'modules/home/components/common/Profile/ProfileBottomButtons';
 
 import { styles } from './styles';
 
@@ -21,16 +22,7 @@ export const ProfileScreen: FC = () => {
   const { t, i18n } = useTranslation();
   const isKeyboardOpened = useKeyboardOpened();
   const { navigate } = useNavigation();
-  const { user, setUser, setIsLanguageChanging } = useGlobalContext();
-
-  const handleSignOut = async (): Promise<void> => {
-    await AsyncStorage.removeItem(AsyncStorageKeys.accessToken);
-    navigate(Screens.SIGN_IN_SCREEN);
-    setUser(null);
-  };
-
-  const handleGoToForgotPassword = (): void =>
-    navigate(Screens.FORGOT_PASSWORD_STACK);
+  const { user, setIsLanguageChanging } = useGlobalContext();
 
   const handleGoToProfileInfo = (): void =>
     navigate(Screens.PROFILE_INFO_SCREEN);
@@ -68,44 +60,7 @@ export const ProfileScreen: FC = () => {
             <Icon name="chevron-right" size={normalize(25)} />
           </TouchableOpacity>
 
-          {!isKeyboardOpened && (
-            <View>
-              <Button
-                variant="outline"
-                borderColor="amber.600"
-                borderWidth="2"
-                rounded="xl"
-                onPress={handleGoToForgotPassword}
-                mb={5}
-              >
-                <Text
-                  color="amber.600"
-                  fontWeight="bold"
-                  fontSize="xl"
-                  textTransform="uppercase"
-                >
-                  {t('links:forgotPassword')}
-                </Text>
-              </Button>
-
-              <Button
-                variant="outline"
-                borderColor="tertiary.600"
-                borderWidth="2"
-                rounded="xl"
-                onPress={handleSignOut}
-              >
-                <Text
-                  color="tertiary.600"
-                  fontWeight="bold"
-                  fontSize="xl"
-                  textTransform="uppercase"
-                >
-                  {t('links:signOut')}
-                </Text>
-              </Button>
-            </View>
-          )}
+          {!isKeyboardOpened && <ProfileBottomButtons />}
         </View>
       ) : (
         <SignInToSee />
