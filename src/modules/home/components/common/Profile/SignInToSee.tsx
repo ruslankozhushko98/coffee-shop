@@ -21,18 +21,18 @@ export const SignInToSee: FC<Props> = ({
 
   return (
     <View flexDirection="row">
-      <TouchableOpacity onPress={handleGoToSignIn}>
-        <Text
-          fontSize="xl"
-          fontWeight="bold"
-          color="blue.600"
-          textDecorationLine="underline"
-        >
-          {t('links:signIn')}
-        </Text>
-      </TouchableOpacity>
+      <Text fontWeight="bold" fontSize="xl" ml={2} flex={1} flexWrap="wrap">
+        <TouchableOpacity onPress={handleGoToSignIn}>
+          <Text
+            fontSize="xl"
+            fontWeight="bold"
+            color="blue.600"
+            textDecorationLine="underline"
+          >
+            {t('links:signIn')}
+          </Text>
+        </TouchableOpacity>
 
-      <Text fontWeight="bold" fontSize="xl" ml={2}>
         {message}
       </Text>
     </View>
