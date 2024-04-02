@@ -13,7 +13,7 @@ import { AsyncStorageKeys, Screens } from 'libs/utils/constants';
 import { languages } from 'libs/localization/i18n';
 import { FormControlWrapper } from 'libs/components/layout/FormControlWrapper';
 import { HomeLayout } from 'modules/home/components/layout/HomeLayout';
-import { SignInToSee } from 'modules/home/components/common/Profile/SignInToSee';
+import { SignInToSee } from 'modules/home/components/common/SignInToSee';
 import { ProfileBottomButtons } from 'modules/home/components/common/Profile/ProfileBottomButtons';
 
 import { styles } from './styles';
