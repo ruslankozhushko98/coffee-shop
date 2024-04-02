@@ -3,15 +3,14 @@ import { useQuery } from '@tanstack/react-query';
 import { Text, useToast } from 'native-base';
 
 import { Queries } from 'libs/utils/constants';
-import { menuService } from 'modules/home/services';
+import { ordersService } from 'modules/home/services';
 
-export const useFetchBeverageById = (beverageId: number | null) => {
+export const useFetchOrderById = (orderId: number | null) => {
   const toast = useToast();
-
   const { isError, error, ...params } = useQuery({
-    queryKey: [Queries.FETCH_BEVERAGE_BY_ID, beverageId],
-    queryFn: () => menuService.fetchBeverageById(Number(beverageId)),
-    enabled: Boolean(beverageId),
+    queryKey: [Queries.FETCH_BEVERAGE_BY_ID, orderId],
+    queryFn: () => ordersService.fetchOrderById(Number(orderId)),
+    enabled: Boolean(orderId),
   });
 
   useEffect(() => {

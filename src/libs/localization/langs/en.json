@@ -139,12 +139,21 @@
   "profileInfo": {
     "title": "Profile info"
   },
+  "orders": {
+    "title": "Orders",
+    "createdMessage": "Order created successfully!",
+    "noOrdersMessage": "No orders found!",
+    "createOrder": "Create order",
+    "orderModal": {
+      "title": "Order details"
+    }
+  },
   "bottomTabs": {
     "home": "Home",
     "orders": "Orders",
     "profile": "Profile"
   },
   "messages": {
-    "functionality": "to get this functionality!"
+    "functionality": " to get this functionality!"
   }
 }

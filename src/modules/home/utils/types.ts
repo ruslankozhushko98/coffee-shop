@@ -1,3 +1,4 @@
+import { BEVERAGE_TYPES, SIZES } from 'libs/utils/constants';
 import { GENDER } from 'modules/auth/utils/constants';
 import { Beverage } from 'modules/home/models';
 
@@ -22,3 +23,16 @@ export type EditProfileDto = {
 };
 
 export type EditProfileValues = Omit<EditProfileDto, 'id'>;
+
+type BeverageOnOrderDto = {
+  beverageId: number;
+  size: SIZES;
+  type: BEVERAGE_TYPES;
+  amount: number;
+};
+
+export type CreateOrderDto = {
+  userId: number;
+  price: number;
+  beverages: Array<BeverageOnOrderDto>;
+};

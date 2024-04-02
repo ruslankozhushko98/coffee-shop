@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { Box, Button, Text } from 'native-base';
+import { Box, IconButton, Text } from 'native-base';
 
 import { normalize } from 'libs/utils/helpers';
 
@@ -21,8 +21,9 @@ export const BeverageDetailsModalHeader: FC<Props> = ({ title, onClose }) => (
       {title}
     </Text>
 
-    <Button variant="link" onPress={onClose}>
-      <Icon name="close" color="#059669" size={normalize(25)} />
-    </Button>
+    <IconButton
+      icon={<Icon name="close" color="#059669" size={normalize(25)} />}
+      onPress={onClose}
+    />
   </Box>
 );

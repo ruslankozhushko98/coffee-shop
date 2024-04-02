@@ -140,12 +140,20 @@
   "profileInfo": {
     "title": "Информация профиля"
   },
+  "orders": {
+    "title": "Заказы",
+    "createdMessage": "Заказ успешно создан!",
+    "noOrdersMessage": "Нет заказов!",
+    "orderModal": {
+      "title": "Детали заказа"
+    }
+  },
   "bottomTabs": {
     "home": "Главная",
     "orders": "Заказы",
     "profile": "Профиль"
   },
   "messages": {
-    "functionality": "чтобы получить доступ к этом функционалу!"
+    "functionality": " чтобы получить доступ к этом функционалу!"
   }
 }
