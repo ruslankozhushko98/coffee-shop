@@ -41,7 +41,6 @@ export enum Queries {
   FETCH_BEVERAGES = 'FETCH_BEVERAGES',
   FETCH_FAVORITES_BEVERAGES = 'FETCH_FAVORITES_BEVERAGES',
   FETCH_BEVERAGE_BY_ID = 'FETCH_BEVERAGE_BY_ID',
-  FETCH_ORDERS = 'FETCH_ORDERS',
 }
 
 export enum Mutations {
@@ -53,7 +52,6 @@ export enum Mutations {
   RESET_PASSWORD = 'RESET_PASSWORD',
   TOGGLE_BEVERAGE_FAVORITE = 'TOGGLE_BEVERAGE_FAVORITE',
   EDIT_PROFILE = 'EDIT_PROFILE',
-  CREATE_ORDER = 'CREATE_ORDER',
 }
 
 export enum AsyncStorageKeys {
@@ -72,23 +70,4 @@ export enum BEVERAGES_LIST_TABS {
 export enum LANGS {
   EN = 'en',
   RU = 'ru',
-}
-
-export enum ORDER_STATUS {
-  RECEIVED = 'RECEIVED',
-  PENDING = 'PENDING',
-  READY = 'READY',
-  CLOSED = 'CLOSED',
-}
-
-export enum SIZES {
-  SMALL = 'SMALL',
-  MEDIUM = 'MEDIUM',
-  LARGE = 'LARGE',
-}
-
-export enum BEVERAGE_TYPES {
-  NO_ICE = 'NO_ICE',
-  ICE = 'ICE',
-  HOT = 'HOT',
 }

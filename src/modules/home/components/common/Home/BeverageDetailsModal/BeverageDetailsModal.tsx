@@ -14,7 +14,6 @@ import { BeverageDetailsModalHeader } from './BeverageDetailsModalHeader';
 import { BeverageDetailsModalBody } from './BeverageDetailsModalBody';
 
 import { styles } from './styles';
-import { useHomeStackContext } from 'contexts/homeStackContext';
 
 type Props = {
   beverageId: number | null;
@@ -28,7 +27,6 @@ export const BeverageDetailsModal: FC<Props> = ({
   const { t } = useTranslation();
   const { navigate } = useNavigation();
   const { user } = useGlobalContext();
-  const { openOrderModal } = useHomeStackContext();
   const queryClient = useQueryClient();
   const { isLoading, data, refetch, isRefetching } =
     useFetchBeverageById(beverageId);
@@ -71,8 +69,7 @@ export const BeverageDetailsModal: FC<Props> = ({
 
   const handleAddToOrder = (): void => {
     if (user?.id) {
-      openOrderModal();
-      handleClose();
+      showAvailableSoonAlert();
     } else {
       showSignInAlert();
     }
