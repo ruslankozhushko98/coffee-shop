@@ -11,7 +11,7 @@ import { Beverage } from 'modules/home/models';
 import { ToggleBeverageFavoriteDto } from 'modules/home/utils/types';
 
 export const menuApi = createApi({
-  reducerPath: API_TAG_TYPES.MENU,
+  reducerPath: 'menuApi',
   baseQuery: fetchBaseQuery({
     baseUrl: BASE_URL,
     async prepareHeaders(headers) {

@@ -42,6 +42,7 @@ export enum Queries {
 
 export enum API_TAG_TYPES {
   MENU = 'MENU',
+  PROFILE = 'PROFILE',
 }
 
 export enum API_TAG_IDS {

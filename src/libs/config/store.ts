@@ -1,32 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { fetchBaseQuery, setupListeners } from '@reduxjs/toolkit/query';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { BASE_URL } from '@env';
+import { setupListeners } from '@reduxjs/toolkit/query';
 
 import { menuApi } from 'modules/home/store/menu.api';
-import { AsyncStorageKeys } from 'libs/utils/constants';
+import { profileApi } from 'modules/home/store/profile.api';
 
 export const store = configureStore({
   reducer: {
     [menuApi.reducerPath]: menuApi.reducer,
+    [profileApi.reducerPath]: profileApi.reducer,
   },
   middleware: getDefaultMiddleware =>
-    getDefaultMiddleware().concat(menuApi.middleware),
-});
-
-export const baseQuery = fetchBaseQuery({
-  baseUrl: BASE_URL,
-  async prepareHeaders(headers) {
-    const accessToken = await AsyncStorage.getItem(
-      AsyncStorageKeys.accessToken,
-    );
-
-    if (accessToken) {
-      headers.set('Authorization', `Bearer ${accessToken}`);
-    }
-
-    return headers;
-  },
+    getDefaultMiddleware().concat(menuApi.middleware, profileApi.middleware),
 });
 
 setupListeners(store.dispatch);
