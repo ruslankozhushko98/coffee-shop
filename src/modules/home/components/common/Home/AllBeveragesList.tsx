@@ -4,11 +4,11 @@ import { useTranslation } from 'react-i18next';
 import { useDebounce } from '@uidotdev/usehooks';
 import { FlatList, Text } from 'native-base';
 
-import { useFetchBeverages } from 'hooks/home/useFetchBeverages';
 import { DEBOUNCE_DELAY } from 'libs/utils/constants';
 import { Loading } from 'libs/components/layout/Loading';
 import { BeverageOpts } from 'modules/home/utils/types';
 import { SearchBar } from 'modules/home/components/common/SearchBar';
+import { useFetchBeveragesQuery } from 'modules/home/store/menu.api';
 import { BeverageRow } from './BeverageRow';
 
 type Props = {
@@ -19,7 +19,7 @@ export const AllBeveragesList: FC<Props> = ({ setSelectBeverageId }) => {
   const { t } = useTranslation();
   const [title, setTitle] = useState<string>('');
   const debounceTitle = useDebounce<string>(title, DEBOUNCE_DELAY);
-  const { isLoading, data } = useFetchBeverages(debounceTitle);
+  const { isLoading, data } = useFetchBeveragesQuery(debounceTitle);
 
   const renderItem: ListRenderItem<BeverageOpts> = ({ item, index }) => {
     const handleSelectItem = (): void => setSelectBeverageId(item.id);

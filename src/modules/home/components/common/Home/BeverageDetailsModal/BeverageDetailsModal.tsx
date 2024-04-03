@@ -1,15 +1,16 @@
 import React, { FC } from 'react';
 import { Alert, Modal, SafeAreaView } from 'react-native';
-import { useQueryClient } from '@tanstack/react-query';
 import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 
 import { useGlobalContext } from 'contexts/globalContext';
-import { useFetchBeverageById } from 'hooks/home/useFetchBeverageById';
-import { useToggleBeverageFavorite } from 'hooks/home/useToggleBeverageFavorite';
-import { Queries, Screens } from 'libs/utils/constants';
+import { Screens } from 'libs/utils/constants';
 import { showAvailableSoonAlert } from 'libs/utils/helpers';
 import { Loading } from 'libs/components/layout/Loading';
+import {
+  useFetchBeverageByIdQuery,
+  useToggleBeverageFavoriteMutation,
+} from 'modules/home/store/menu.api';
 import { BeverageDetailsModalHeader } from './BeverageDetailsModalHeader';
 import { BeverageDetailsModalBody } from './BeverageDetailsModalBody';
 
@@ -27,10 +28,14 @@ export const BeverageDetailsModal: FC<Props> = ({
   const { t } = useTranslation();
   const { navigate } = useNavigation();
   const { user } = useGlobalContext();
-  const queryClient = useQueryClient();
-  const { isLoading, data, refetch, isRefetching } =
-    useFetchBeverageById(beverageId);
-  const { mutateAsync, isPending } = useToggleBeverageFavorite();
+  const { data, isLoading, refetch, isFetching } = useFetchBeverageByIdQuery(
+    Number(beverageId),
+    {
+      skip: !beverageId,
+    },
+  );
+  const [toggleBeverageFavorite, { isLoading: isPending }] =
+    useToggleBeverageFavoriteMutation();
 
   const handleClose = (): void => setBeverageId(null);
 
@@ -52,16 +57,12 @@ export const BeverageDetailsModal: FC<Props> = ({
 
   const toggleFavorite = async (): Promise<void> => {
     if (user?.id) {
-      await mutateAsync({
+      await toggleBeverageFavorite({
         beverageId: Number(data?.id),
         userId: Number(user?.id),
       });
 
       await refetch();
-
-      await queryClient.invalidateQueries({
-        queryKey: [Queries.FETCH_FAVORITES_BEVERAGES],
-      });
     } else {
       showSignInAlert();
     }
@@ -81,7 +82,7 @@ export const BeverageDetailsModal: FC<Props> = ({
       onDismiss={handleClose}
       animationType="slide"
     >
-      {(isPending || isRefetching) && (
+      {(isPending || isFetching) && (
         <Loading backgroundColor="rgba(0, 0, 0, 0.6)" h="full" />
       )}
 

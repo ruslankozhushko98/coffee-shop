@@ -3,12 +3,12 @@ import { ListRenderItem, RefreshControl } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { FlatList, Text } from 'native-base';
 
-import { useFetchFavoriteBeverages } from 'hooks/home/useFetchFavoriteBeverages';
 import { useGlobalContext } from 'contexts/globalContext';
 import { Loading } from 'libs/components/layout/Loading';
 import { BeverageOpts } from 'modules/home/utils/types';
 import { HomeLayout } from 'modules/home/components/layout/HomeLayout';
 import { SignInToSee } from 'modules/home/components/common/Profile/SignInToSee';
+import { useFetchFavoriteBeveragesQuery } from 'modules/home/store/menu.api';
 import { BeverageRow } from './BeverageRow';
 
 type Props = {
@@ -17,8 +17,8 @@ type Props = {
 
 export const FavoriteBeveragesList: FC<Props> = ({ setSelectBeverageId }) => {
   const { t } = useTranslation();
-  const { data, isLoading, refetch, isRefetching } =
-    useFetchFavoriteBeverages();
+  const { data, isLoading, isFetching, refetch } =
+    useFetchFavoriteBeveragesQuery();
   const { user } = useGlobalContext();
 
   if (!user) {
@@ -46,7 +46,7 @@ export const FavoriteBeveragesList: FC<Props> = ({ setSelectBeverageId }) => {
       h="full"
       data={data}
       refreshControl={
-        <RefreshControl refreshing={isRefetching} onRefresh={refetch} />
+        <RefreshControl refreshing={isFetching} onRefresh={refetch} />
       }
       ListEmptyComponent={
         isLoading ? (
