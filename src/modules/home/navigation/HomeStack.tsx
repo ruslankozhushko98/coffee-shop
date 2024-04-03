@@ -25,7 +25,7 @@ const renderTabBarIcon =
     (
       <Icon
         name={iconName}
-        size={normalize(25)}
+        size={normalize(22)}
         color={focused ? '#059669' : color}
       />
     );
