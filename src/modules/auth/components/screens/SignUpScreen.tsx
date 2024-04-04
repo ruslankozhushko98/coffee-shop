@@ -2,11 +2,11 @@ import React, { FC } from 'react';
 import { Formik, FormikHelpers } from 'formik';
 import dayjs from 'dayjs';
 
-import { useSignUp } from 'hooks/auth/useSignUp';
 import { DATE_FORMAT } from 'libs/utils/constants';
 import { signUpValidationSchema } from 'modules/auth/utils/validation';
 import { SignUpDto } from 'modules/auth/utils/types';
 import { GENDER } from 'modules/auth/utils/constants';
+import { useSignUpMutation } from 'modules/auth/store/authApi';
 import { SignUpFields } from 'modules/auth/components/common/SignUp/SignUpFields';
 
 const initialValues: SignUpDto = {
@@ -19,13 +19,13 @@ const initialValues: SignUpDto = {
 };
 
 export const SignUpScreen: FC = () => {
-  const { mutate } = useSignUp();
+  const [signUp] = useSignUpMutation();
 
   const handleSubmit = (
     values: SignUpDto,
     { setSubmitting }: FormikHelpers<SignUpDto>,
   ): void => {
-    mutate({
+    signUp({
       ...values,
       dob: dayjs(values.dob).format(DATE_FORMAT),
     });

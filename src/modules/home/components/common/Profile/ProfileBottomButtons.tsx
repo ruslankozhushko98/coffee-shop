@@ -1,21 +1,22 @@
 import React, { FC } from 'react';
+import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Button, Text, View } from 'native-base';
 
-import { useGlobalContext } from 'contexts/globalContext';
 import { AsyncStorageKeys, Screens } from 'libs/utils/constants';
+import { setUser } from 'modules/auth/store/authSlice';
 
 export const ProfileBottomButtons: FC = () => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
   const { navigate } = useNavigation();
-  const { setUser } = useGlobalContext();
 
   const handleSignOut = async (): Promise<void> => {
     await AsyncStorage.removeItem(AsyncStorageKeys.accessToken);
     navigate(Screens.SIGN_IN_SCREEN);
-    setUser(null);
+    dispatch(setUser(null));
   };
 
   const handleGoToForgotPassword = (): void =>

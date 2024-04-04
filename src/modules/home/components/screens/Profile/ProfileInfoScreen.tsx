@@ -1,23 +1,22 @@
 import React, { FC } from 'react';
-import { useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { Text, View } from 'native-base';
 import { Formik, FormikHelpers } from 'formik';
 
-import { useGlobalContext } from 'contexts/globalContext';
-import { Queries } from 'libs/utils/constants';
 import { EditProfileValues } from 'modules/home/utils/types';
 import { editProfileValidationSchema } from 'modules/home/utils/validation';
 import { GENDER } from 'modules/auth/utils/constants';
-import { useEditProfileMutation } from 'modules/home/store/profile.api';
+import { useUserSelector } from 'modules/auth/store/authSelectors';
+import { useLazyFetchMeQuery } from 'modules/auth/store/authApi';
+import { useEditProfileMutation } from 'modules/home/store/profileApi';
 import { ProfileInfoForm } from 'modules/home/components/common/Profile/ProfileInfo/ProfileInfoForm';
 import { HomeLayout } from 'modules/home/components/layout/HomeLayout';
 
 export const ProfileInfoScreen: FC = () => {
   const { t } = useTranslation();
-  const { user } = useGlobalContext();
-  const queryClient = useQueryClient();
+  const user = useUserSelector();
   const [editProfile] = useEditProfileMutation();
+  const [trigger] = useLazyFetchMeQuery();
 
   const handleSubmit = async (
     values: EditProfileValues,
@@ -28,9 +27,7 @@ export const ProfileInfoScreen: FC = () => {
       ...values,
     });
 
-    await queryClient.invalidateQueries({
-      queryKey: [Queries.FETCH_ME],
-    });
+    trigger();
 
     setSubmitting(false);
   };

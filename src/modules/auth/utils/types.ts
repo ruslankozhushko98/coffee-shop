@@ -12,3 +12,8 @@ export type AuthBiometricDto = {
   signature: string;
   payload: string;
 };
+
+export type AuthObj = {
+  accessToken: string;
+  user: User;
+};

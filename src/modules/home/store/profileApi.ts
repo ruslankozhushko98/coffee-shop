@@ -1,5 +1,5 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { BASE_URL } from '@env';
 
 import { API_TAG_TYPES, AsyncStorageKeys } from 'libs/utils/constants';

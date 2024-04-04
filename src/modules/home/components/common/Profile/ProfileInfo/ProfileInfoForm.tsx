@@ -4,15 +4,15 @@ import { Button, Select, Text, View } from 'native-base';
 import { useFormikContext } from 'formik';
 
 import { useKeyboardOpened } from 'hooks/useKeyboardOpened';
-import { useGlobalContext } from 'contexts/globalContext';
 import { SelectField, TextField } from 'libs/components/layout/formik/fields';
+import { useUserSelector } from 'modules/auth/store/authSelectors';
 import { GENDER } from 'modules/auth/utils/constants';
 import { EditProfileValues } from 'modules/home/utils/types';
 
 export const ProfileInfoForm: FC = () => {
   const { t } = useTranslation();
   const isKeyboardOpened = useKeyboardOpened();
-  const { user } = useGlobalContext();
+  const user = useUserSelector();
   const { handleSubmit, isSubmitting, values } =
     useFormikContext<EditProfileValues>();
   const [isEditBtnVisible, setIsEditBtnVisible] = useState<boolean>(false);

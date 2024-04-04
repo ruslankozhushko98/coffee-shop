@@ -5,13 +5,13 @@ import { useNavigation } from '@react-navigation/native';
 import { BiometryType } from 'react-native-biometrics';
 import { Text, useToast } from 'native-base';
 
-import { useGlobalContext } from 'contexts/globalContext';
 import { AsyncStorageKeys, Screens } from 'libs/utils/constants';
 import { rnBiometrics } from 'libs/config/biometrics';
 import { authService } from 'modules/auth/services';
+import { useUserSelector } from 'modules/auth/store/authSelectors';
 
 export const useBiometrics = () => {
-  const { user } = useGlobalContext();
+  const user = useUserSelector();
   const toast = useToast();
   const { navigate } = useNavigation();
   const [isBiometricSetup, setIsBiometricSetup] = useState<boolean>(false);

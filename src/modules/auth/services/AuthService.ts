@@ -3,16 +3,9 @@ import { AxiosResponse } from 'axios';
 import { httpClient } from 'libs/config/httpClient';
 import {
   AuthBiometricDto,
+  AuthObj,
   PublicKeyDto,
-  SignInDto,
-  SignUpDto,
 } from 'modules/auth/utils/types';
-import { User } from 'modules/auth/models';
-
-type AuthObj = {
-  accessToken: string;
-  user: User;
-};
 
 class AuthService {
   private static _instance: AuthService;
@@ -29,21 +22,6 @@ class AuthService {
     }
 
     return AuthService._instance;
-  }
-
-  public async signIn(dto: SignInDto): Promise<AuthObj> {
-    const { data } = await httpClient.post('/auth/sign-in', dto);
-    return data;
-  }
-
-  public async signUp(dto: SignUpDto): Promise<AuthObj> {
-    const { data } = await httpClient.post('/auth/sign-up', dto);
-    return data;
-  }
-
-  public async fetchMe(): Promise<User> {
-    const { data } = await httpClient.get('/auth/me');
-    return data;
   }
 
   public async createPublicKey(

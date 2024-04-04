@@ -8,7 +8,7 @@ import { DEBOUNCE_DELAY } from 'libs/utils/constants';
 import { Loading } from 'libs/components/layout/Loading';
 import { BeverageOpts } from 'modules/home/utils/types';
 import { SearchBar } from 'modules/home/components/common/SearchBar';
-import { useFetchBeveragesQuery } from 'modules/home/store/menu.api';
+import { useFetchBeveragesQuery } from 'modules/home/store/menuApi';
 import { BeverageRow } from './BeverageRow';
 
 type Props = {

@@ -3,14 +3,14 @@ import { Alert, Modal, SafeAreaView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 
-import { useGlobalContext } from 'contexts/globalContext';
 import { Screens } from 'libs/utils/constants';
 import { showAvailableSoonAlert } from 'libs/utils/helpers';
 import { Loading } from 'libs/components/layout/Loading';
+import { useUserSelector } from 'modules/auth/store/authSelectors';
 import {
   useFetchBeverageByIdQuery,
   useToggleBeverageFavoriteMutation,
-} from 'modules/home/store/menu.api';
+} from 'modules/home/store/menuApi';
 import { BeverageDetailsModalHeader } from './BeverageDetailsModalHeader';
 import { BeverageDetailsModalBody } from './BeverageDetailsModalBody';
 
@@ -27,7 +27,7 @@ export const BeverageDetailsModal: FC<Props> = ({
 }) => {
   const { t } = useTranslation();
   const { navigate } = useNavigation();
-  const { user } = useGlobalContext();
+  const user = useUserSelector();
   const { data, isLoading, refetch, isFetching } = useFetchBeverageByIdQuery(
     Number(beverageId),
     {

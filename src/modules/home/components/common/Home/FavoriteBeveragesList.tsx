@@ -3,12 +3,12 @@ import { ListRenderItem, RefreshControl } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { FlatList, Text } from 'native-base';
 
-import { useGlobalContext } from 'contexts/globalContext';
 import { Loading } from 'libs/components/layout/Loading';
+import { useUserSelector } from 'modules/auth/store/authSelectors';
 import { BeverageOpts } from 'modules/home/utils/types';
 import { HomeLayout } from 'modules/home/components/layout/HomeLayout';
 import { SignInToSee } from 'modules/home/components/common/Profile/SignInToSee';
-import { useFetchFavoriteBeveragesQuery } from 'modules/home/store/menu.api';
+import { useFetchFavoriteBeveragesQuery } from 'modules/home/store/menuApi';
 import { BeverageRow } from './BeverageRow';
 
 type Props = {
@@ -19,7 +19,7 @@ export const FavoriteBeveragesList: FC<Props> = ({ setSelectBeverageId }) => {
   const { t } = useTranslation();
   const { data, isLoading, isFetching, refetch } =
     useFetchFavoriteBeveragesQuery();
-  const { user } = useGlobalContext();
+  const user = useUserSelector();
 
   if (!user) {
     return (

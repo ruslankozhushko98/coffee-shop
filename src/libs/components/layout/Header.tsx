@@ -3,11 +3,11 @@ import { useTranslation } from 'react-i18next';
 import { BottomTabHeaderProps } from '@react-navigation/bottom-tabs';
 import { Box, Text } from 'native-base';
 
-import { useGlobalContext } from 'contexts/globalContext';
+import { useUserSelector } from 'modules/auth/store/authSelectors';
 
 export const Header: FC<BottomTabHeaderProps> = () => {
   const { t } = useTranslation();
-  const { user } = useGlobalContext();
+  const user = useUserSelector();
 
   return (
     <Box

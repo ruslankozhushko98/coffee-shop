@@ -5,12 +5,12 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useTranslation } from 'react-i18next';
 import { Text } from 'native-base';
 
-import { useFetchMe } from 'hooks/auth/useFetchMe';
 import { useGlobalContext } from 'contexts/globalContext';
 import { Screens } from 'libs/utils/constants';
 import { normalize } from 'libs/utils/helpers';
 import { Loading } from 'libs/components/layout/Loading';
 import { Header } from 'libs/components/layout/Header';
+import { useFetchMeQuery } from 'modules/auth/store/authApi';
 import { HomeScreen } from 'modules/home/components/screens/HomeScreen';
 import { OrdersScreen } from 'modules/home/components/screens/OrdersScreen';
 import { ProfileStack } from './ProfileStack';
@@ -41,7 +41,7 @@ const renderTabBarLabel =
 
 export const HomeStack: FC = () => {
   const { t } = useTranslation();
-  const { isLoading } = useFetchMe();
+  const { isLoading } = useFetchMeQuery();
   const { isLanguageChanging } = useGlobalContext();
 
   return (
