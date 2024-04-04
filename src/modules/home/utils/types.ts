@@ -1,3 +1,6 @@
+import { NavigationState, SceneRendererProps } from 'react-native-tab-view';
+
+import { BEVERAGES_LIST_TABS } from 'libs/utils/constants';
 import { GENDER } from 'modules/auth/utils/constants';
 import { Beverage } from 'modules/home/models';
 
@@ -22,3 +25,16 @@ export type EditProfileDto = {
 };
 
 export type EditProfileValues = Omit<EditProfileDto, 'id'>;
+
+export type RouteOptions = {
+  key: BEVERAGES_LIST_TABS;
+  title: string;
+};
+
+export type TabBarProps = SceneRendererProps & {
+  navigationState: NavigationState<RouteOptions>;
+};
+
+export type RenderSceneProps = SceneRendererProps & {
+  route: RouteOptions;
+};

@@ -17,9 +17,11 @@ type Props = {
 
 export const FavoriteBeveragesList: FC<Props> = ({ setSelectBeverageId }) => {
   const { t } = useTranslation();
-  const { data, isLoading, isFetching, refetch } =
-    useFetchFavoriteBeveragesQuery();
   const user = useUserSelector();
+  const { data, isLoading, isFetching, refetch } =
+    useFetchFavoriteBeveragesQuery(undefined, {
+      skip: !user,
+    });
 
   if (!user) {
     return (

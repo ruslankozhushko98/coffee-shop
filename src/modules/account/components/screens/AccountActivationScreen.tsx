@@ -1,12 +1,15 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Text, View } from 'native-base';
 import { Formik, FormikHelpers } from 'formik';
 
-import { useActivateAccount } from 'hooks/account/useActivateAccount';
-import { useGlobalContext } from 'contexts/globalContext';
+import { User } from 'modules/auth/models';
+import { setUser } from 'modules/auth/store/authSlice';
+import { useUserSelector } from 'modules/auth/store/authSelectors';
 import { VerificationCodeInitialValues } from 'modules/account/utils/types';
 import { accountVerificationSchema } from 'modules/account/utils/validation';
+import { useActivateAccountMutation } from 'modules/account/store/accountApi';
 import { AccountActivationForm } from 'modules/account/components/common/AccountActivationForm';
 
 const initialValues: VerificationCodeInitialValues = {
@@ -15,14 +18,27 @@ const initialValues: VerificationCodeInitialValues = {
 
 export const AccountActivationScreen: FC = () => {
   const { t } = useTranslation();
-  const { user } = useGlobalContext();
-  const { mutateAsync } = useActivateAccount();
+  const dispatch = useDispatch();
+  const user = useUserSelector();
+  const [activateAccount, { isSuccess }] = useActivateAccountMutation();
+
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch(
+        setUser({
+          ...user,
+          isActivated: true,
+        } as User),
+      );
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSuccess]);
 
   const handleSubmit = async (
     values: VerificationCodeInitialValues,
     { setSubmitting }: FormikHelpers<VerificationCodeInitialValues>,
   ): Promise<void> => {
-    await mutateAsync({
+    await activateAccount({
       code: values.code,
       userId: Number(user?.id),
     });

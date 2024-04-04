@@ -100,11 +100,13 @@
       "title": "Введите ваш email, чтобы мы могли отправить проверочный код!"
     },
     "accountVerificationScreen": {
-      "title": "Проверочный код был отправлен на ваш email"
+      "title": "Проверочный код был отправлен на ваш email",
+      "successMessage": "Аккаунт успешно верифицирован!"
     },
     "newPasswordScreen": {
       "title": "Теперь вы можете создать новый пароль!",
-      "newPasswordBtn": "Создать новый пароль"
+      "newPasswordBtn": "Создать новый пароль",
+      "successMessage": "Пароль успешно сброшен!"
     }
   },
   "accountActivationScreen": {

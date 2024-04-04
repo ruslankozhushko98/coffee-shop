@@ -5,7 +5,6 @@ import { useNavigation } from '@react-navigation/native';
 import { KeyboardAvoidingView } from 'native-base';
 import { Formik, FormikHelpers } from 'formik';
 
-import { useGlobalContext } from 'contexts/globalContext';
 import { useBiometrics } from 'hooks/useBiometrics';
 import { useKeyboardOpened } from 'hooks/useKeyboardOpened';
 import { AsyncStorageKeys, Screens } from 'libs/utils/constants';

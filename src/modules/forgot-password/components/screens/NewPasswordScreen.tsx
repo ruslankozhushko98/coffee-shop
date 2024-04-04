@@ -1,10 +1,13 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Text, useToast } from 'native-base';
 import { Formik, FormikHelpers } from 'formik';
 
-import { useResetPassword } from 'hooks/forgot-password/useResetPassword';
-import { AsyncStorageKeys } from 'libs/utils/constants';
+import { AsyncStorageKeys, Screens } from 'libs/utils/constants';
+import { useLazyFetchMeQuery } from 'modules/auth/store/authApi';
+import { useResetPasswordMutation } from 'modules/forgot-password/store/forgotPasswordApi';
 import { PasswordObj } from 'modules/forgot-password/utils/types';
 import { createPasswordValidationSchema } from 'modules/forgot-password/utils/validation';
 import { ForgotPasswordWrapper } from 'modules/forgot-password/components/layout/ForgotPasswordWrapper';
@@ -17,7 +20,35 @@ const initialValues: PasswordObj = {
 
 export const NewPasswordScreen: FC = () => {
   const { t } = useTranslation();
-  const { mutateAsync } = useResetPassword();
+  const { navigate } = useNavigation();
+  const toast = useToast();
+  const [resetPassword, { isSuccess }] = useResetPasswordMutation();
+  const [fetchMe] = useLazyFetchMeQuery();
+
+  useEffect(() => {
+    if (isSuccess) {
+      (async () => {
+        await AsyncStorage.removeItem(AsyncStorageKeys.verificationToken);
+
+        toast.show({
+          placement: 'bottom',
+          title: (
+            <Text color="white" fontWeight="bold">
+              {t('forgotPassword:newPasswordScreen:successMessage')}
+            </Text>
+          ),
+          style: {
+            backgroundColor: 'green',
+          },
+        });
+
+        fetchMe();
+
+        navigate(Screens.SIGN_IN_SCREEN);
+      })();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSuccess]);
 
   const handleSubmit = async (
     values: PasswordObj,
@@ -29,7 +60,7 @@ export const NewPasswordScreen: FC = () => {
 
     const userId = await AsyncStorage.getItem(AsyncStorageKeys.userId);
 
-    await mutateAsync({
+    await resetPassword({
       ...values,
       userId: Number(userId),
       resetToken: String(token),

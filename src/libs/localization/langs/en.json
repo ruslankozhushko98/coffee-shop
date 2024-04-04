@@ -99,11 +99,13 @@
       "title": "Enter your email so we could send a verification code!"
     },
     "accountVerificationScreen": {
-      "title": "Verification code has been sent to your email!"
+      "title": "Verification code has been sent to your email!",
+      "successMessage": "Account verified successfully!"
     },
     "newPasswordScreen": {
       "title": "Now you can create new password!",
-      "newPasswordBtn": "Create new password"
+      "newPasswordBtn": "Create new password",
+      "successMessage": "Password reset successfully!"
     }
   },
   "accountActivationScreen": {
