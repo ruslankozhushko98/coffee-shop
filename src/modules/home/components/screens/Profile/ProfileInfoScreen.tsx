@@ -16,7 +16,7 @@ export const ProfileInfoScreen: FC = () => {
   const { t } = useTranslation();
   const user = useUserSelector();
   const [editProfile] = useEditProfileMutation();
-  const [trigger] = useLazyFetchMeQuery();
+  const [fetchMe] = useLazyFetchMeQuery();
 
   const handleSubmit = async (
     values: EditProfileValues,
@@ -27,7 +27,7 @@ export const ProfileInfoScreen: FC = () => {
       ...values,
     });
 
-    trigger();
+    fetchMe();
 
     setSubmitting(false);
   };
