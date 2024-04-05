@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Alert } from 'react-native';
+import { useDispatch } from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import { BiometryType } from 'react-native-biometrics';
@@ -9,8 +10,10 @@ import { AsyncStorageKeys, Screens } from 'libs/utils/constants';
 import { rnBiometrics } from 'libs/config/biometrics';
 import { authService } from 'modules/auth/services';
 import { useUserSelector } from 'modules/auth/store/authSelectors';
+import { setUser } from 'modules/auth/store/authSlice';
 
 export const useBiometrics = () => {
+  const dispatch = useDispatch();
   const user = useUserSelector();
   const toast = useToast();
   const { navigate } = useNavigation();
@@ -91,12 +94,16 @@ export const useBiometrics = () => {
       });
 
       if (success && signature) {
-        const { accessToken } = await authService.authBiometric({
-          signature,
-          payload,
-        });
+        const { accessToken, user: authUser } = await authService.authBiometric(
+          {
+            signature,
+            payload,
+          },
+        );
 
         await AsyncStorage.setItem(AsyncStorageKeys.accessToken, accessToken);
+
+        dispatch(setUser(authUser));
 
         navigate(Screens.HOME_STACK);
       }

@@ -28,7 +28,7 @@ export const SignInFields: FC = () => {
       verifyBiometrics();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isBiometricSetup]);
+  }, []);
 
   const goToForgotPassword = (): void =>
     navigate(Screens.FORGOT_PASSWORD_STACK);

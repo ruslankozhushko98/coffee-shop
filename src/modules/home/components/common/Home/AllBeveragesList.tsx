@@ -1,5 +1,6 @@
 import React, { FC, useState } from 'react';
 import { ListRenderItem } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { useTranslation } from 'react-i18next';
 import { useDebounce } from '@uidotdev/usehooks';
 import { FlatList, Text } from 'native-base';
@@ -30,7 +31,7 @@ export const AllBeveragesList: FC<Props> = ({ setSelectBeverageId }) => {
   };
 
   return (
-    <>
+    <KeyboardAwareScrollView>
       <SearchBar value={title} onChangeText={setTitle} mx={3.5} mt={6} />
 
       <FlatList
@@ -50,6 +51,6 @@ export const AllBeveragesList: FC<Props> = ({ setSelectBeverageId }) => {
         refreshing={isLoading}
         renderItem={renderItem}
       />
-    </>
+    </KeyboardAwareScrollView>
   );
 };
