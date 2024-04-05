@@ -2,9 +2,9 @@ import React, { FC, useState } from 'react';
 import { ListRenderItem } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { useTranslation } from 'react-i18next';
-import { useDebounce } from '@uidotdev/usehooks';
 import { FlatList, Text } from 'native-base';
 
+import { useDebounce } from 'hooks/useDebounce';
 import { DEBOUNCE_DELAY } from 'libs/utils/constants';
 import { Loading } from 'libs/components/layout/Loading';
 import { BeverageOpts } from 'modules/home/utils/types';
