@@ -47,17 +47,6 @@ export const HomeScreen: FC = () => {
     />
   );
 
-  const routes = [
-    {
-      key: BEVERAGES_LIST_TABS.ALL,
-      title: t('home:beveragesTabs:all:title'),
-    },
-    {
-      key: BEVERAGES_LIST_TABS.FAVORITES,
-      title: t('home:beveragesTabs:favorites:title'),
-    },
-  ];
-
   return (
     <View flex={1}>
       <View backgroundColor="white">
@@ -68,7 +57,19 @@ export const HomeScreen: FC = () => {
 
       <TabView
         lazy
-        navigationState={{ index, routes }}
+        navigationState={{
+          index,
+          routes: [
+            {
+              key: BEVERAGES_LIST_TABS.ALL,
+              title: t('home:beveragesTabs:all:title'),
+            },
+            {
+              key: BEVERAGES_LIST_TABS.FAVORITES,
+              title: t('home:beveragesTabs:favorites:title'),
+            },
+          ],
+        }}
         renderLazyPlaceholder={renderLazyPlaceholder}
         onIndexChange={setIndex}
         renderScene={renderScene}
