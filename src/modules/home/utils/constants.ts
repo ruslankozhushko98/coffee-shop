@@ -1,0 +1,4 @@
+export enum BEVERAGES_LIST_TABS {
+  ALL = 'ALL',
+  FAVORITES = 'FAVORITES',
+}

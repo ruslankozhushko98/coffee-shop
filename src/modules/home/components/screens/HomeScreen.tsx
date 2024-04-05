@@ -5,8 +5,8 @@ import { useTranslation } from 'react-i18next';
 import { TabView, TabBar } from 'react-native-tab-view';
 import { Text, View } from 'native-base';
 
-import { BEVERAGES_LIST_TABS } from 'libs/utils/constants';
 import { Loading } from 'libs/components/layout/Loading';
+import { BEVERAGES_LIST_TABS } from 'modules/home/utils/constants';
 import { RenderSceneProps, TabBarProps } from 'modules/home/utils/types';
 import { AllBeveragesList } from 'modules/home/components/common/Home/AllBeveragesList';
 import { FavoriteBeveragesList } from 'modules/home/components/common/Home/FavoriteBeveragesList';

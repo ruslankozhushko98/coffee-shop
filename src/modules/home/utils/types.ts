@@ -1,8 +1,8 @@
 import { NavigationState, SceneRendererProps } from 'react-native-tab-view';
 
-import { BEVERAGES_LIST_TABS } from 'libs/utils/constants';
 import { GENDER } from 'modules/auth/utils/constants';
 import { Beverage } from 'modules/home/models';
+import { BEVERAGES_LIST_TABS } from './constants';
 
 export type BeverageOpts = Pick<Beverage, 'id' | 'title' | 'price'>;
 

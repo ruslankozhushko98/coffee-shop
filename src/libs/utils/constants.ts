@@ -59,11 +59,6 @@ export enum AsyncStorageKeys {
   lang = 'lang',
 }
 
-export enum BEVERAGES_LIST_TABS {
-  ALL = 'ALL',
-  FAVORITES = 'FAVORITES',
-}
-
 export enum LANGS {
   EN = 'en',
   RU = 'ru',

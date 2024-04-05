@@ -9,6 +9,7 @@
     "start": "react-native start",
     "test": "jest",
     "android:clean": "cd ./android && ./gradlew clean && cd ..",
+    "apk:rel": "cd ./android && ./gradlew assembleRelease && cd ..",
     "reinstall:pods": "cd ./ios && pod deintegrate && rm Podfile.lock && pod install && cd .."
   },
   "dependencies": {
